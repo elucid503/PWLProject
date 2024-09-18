@@ -9,7 +9,7 @@ public class Main {
 
         try {
 
-            PathResolver Resolver = new PathResolver("./ExternalFiles/Example.txt");
+            PathResolver Resolver = new PathResolver("./ExternalFiles/Article1.txt");
 
             System.out.println(Resolver.Resolve());
 
