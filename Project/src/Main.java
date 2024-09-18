@@ -15,7 +15,7 @@ public class Main {
 
             FileReader Reader = new FileReader(Resolver.Resolve());
 
-            String FileContents = Reader.ReadAsString();
+            java.util.List<String> FileContents = Reader.ReadAsStringList();
 
             System.out.println(FileContents);
 
