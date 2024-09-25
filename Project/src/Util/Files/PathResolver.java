@@ -2,7 +2,7 @@ package Util.Files;
 
 public class PathResolver {
 
-    private String Path;
+    private final String Path;
 
     public PathResolver(String RelativePath) {
 
