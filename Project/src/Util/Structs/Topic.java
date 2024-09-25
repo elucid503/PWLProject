@@ -16,7 +16,7 @@ public class Topic {
 
         this.topicName = topicName;
 
-        this.dirPath = "./ExternalFiles/" + topicName;
+        this.dirPath = "./ExternalFiles/" + topicName + "/";
 
     }
 
@@ -28,7 +28,7 @@ public class Topic {
 
         for (String articleFile : articleFileList) {
 
-            Article article = new Article(articleFile);
+            Article article = new Article(this.dirPath + articleFile);
 
             // article.Load(); implemented soon
 
