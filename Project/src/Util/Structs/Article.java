@@ -1,14 +1,15 @@
 package Util.Structs;
 
+import Util.Files.FileReader;
+
+import java.util.ArrayList;
+
 public class Article {
 
     private final String filePath;
 
-    private contents() {
-
-        public String plainText;
-
-    }
+    public String plainTextContents;
+    public ArrayList<String> arrayListContents;
 
     public Article(String filePath) {
 
@@ -16,9 +17,10 @@ public class Article {
 
     }
 
-    public void Load() {
+    public void Read() throws Exception {
 
-        this.contents.plainText = "This is a placeholder text for the article.";
+        this.plainTextContents = new FileReader(this.filePath).readAsString();
+        this.arrayListContents = new FileReader(this.filePath).readAsStringList();
 
     }
 

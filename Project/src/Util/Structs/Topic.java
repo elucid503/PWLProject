@@ -8,7 +8,7 @@ public class Topic {
 
     public String topicName;
 
-    public ArrayList<Article> articleList;
+    public ArrayList<Article> articleList = new ArrayList<>();
 
     private final String dirPath;
 
@@ -32,7 +32,7 @@ public class Topic {
 
             // article.Load(); implemented soon
 
-            articleList.add(article);
+            this.articleList.add(article);
 
         }
 
