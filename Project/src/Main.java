@@ -1,4 +1,4 @@
-import Util.Structs.Topic;
+import Classes.Topic;
 
 public class Main {
 
@@ -10,7 +10,7 @@ public class Main {
 
         myTopic.articleList.getFirst().Read();
 
-        System.out.println(myTopic.articleList.getFirst().plainTextContents);
+        System.out.println(myTopic.articleList.getFirst().stats.getWordCount());
 
     }
 

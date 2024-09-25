@@ -1,6 +1,8 @@
-package Util.Structs;
+package Classes;
 
 import Util.Files.FileReader;
+import Util.Misc.ArticleStats;
+import Util.Misc.StopWordManager;
 
 import java.util.ArrayList;
 
@@ -11,9 +13,15 @@ public class Article {
     public String plainTextContents;
     public ArrayList<String> arrayListContents;
 
-    public Article(String filePath) {
+    public ArticleStats stats;
+    public StopWordManager stopWordManager;
+
+    public Article(String filePath) throws Exception {
 
         this.filePath = filePath;
+
+        this.stats = new ArticleStats(this);
+        this.stopWordManager = new StopWordManager(this);
 
     }
 

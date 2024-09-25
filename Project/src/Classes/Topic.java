@@ -1,4 +1,4 @@
-package Util.Structs;
+package Classes;
 
 import Util.Files.DirReader;
 
