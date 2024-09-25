@@ -27,7 +27,7 @@ public class FileReader {
 
         // Read the file as a string
 
-        BufferedReader Reader = InitReader();
+        BufferedReader Reader = this.InitReader();
 
         StringBuilder FileContents = new StringBuilder();
         String Line;
@@ -89,7 +89,7 @@ public class FileReader {
 
         // Initialize the reader
 
-        return new BufferedReader(new java.io.FileReader(Path));
+        return new BufferedReader(new java.io.FileReader(this.Path));
 
     }
 
