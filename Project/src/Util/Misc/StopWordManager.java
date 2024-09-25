@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class StopWordManager {
 
-    private Article article;
+    private final Article article;
 
     private final String stopWordPath = "./ExternalFiles/StopWords.txt";
 
