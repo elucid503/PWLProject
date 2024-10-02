@@ -8,9 +8,9 @@ public class Main {
 
         myTopic.Load();
 
-        myTopic.articleList.getFirst().Read();
+        myTopic.articleList.getFirst().Read(true);
 
-        System.out.println(myTopic.articleList.getFirst().stats.getWordCount());
+        System.out.println(myTopic.articleList.getFirst().stopWordManager.getStopWordCount());
 
     }
 

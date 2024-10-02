@@ -25,10 +25,20 @@ public class Article {
 
     }
 
-    public void Read() throws Exception {
+    public void Read(boolean lower) throws Exception {
 
         this.plainTextContents = new FileReader(this.filePath).readAsString();
         this.arrayListContents = new FileReader(this.filePath).readAsStringList();
+
+        if (lower) {
+
+            this.plainTextContents = this.plainTextContents.toLowerCase();
+
+            // Help from the function reference operator
+
+            this.arrayListContents.replaceAll(String::toLowerCase);
+
+        }
 
     }
 

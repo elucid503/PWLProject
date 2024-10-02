@@ -12,15 +12,20 @@ public class ArticleStats {
 
     }
 
+    /**
+     * Article must be loaded before calling this method
+     * @return The number of words in the article
+     */
+
     public int getWordCount() {
 
         return article.plainTextContents.split(" ").length;
 
     }
 
-    public int getStopWordCount() {
+    public int uniqueWords() {
 
-        return (int) 0; // TODO: Implement this
+        return (int) article.arrayListContents.stream().distinct().count();
 
     }
 
