@@ -27,8 +27,7 @@ public class ArticleStats {
 
         // Use hashmap
 
-
-
+        return 0;
 
     }
 
