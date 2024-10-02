@@ -2,6 +2,7 @@ package Util.Files;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.util.ArrayList;
 
 public class FileReader {
 
@@ -23,11 +24,11 @@ public class FileReader {
 
     }
 
-    public String ReadAsString() throws Exception {
+    public String readAsString() throws Exception {
 
         // Read the file as a string
 
-        BufferedReader Reader = InitReader();
+        BufferedReader Reader = this.InitReader();
 
         StringBuilder FileContents = new StringBuilder();
         String Line;
@@ -55,13 +56,13 @@ public class FileReader {
 
     // Read as string list
 
-    public java.util.List<String> ReadAsStringList() throws Exception {
+    public ArrayList<String> readAsStringList() throws Exception {
 
         // Read the file as a string list
 
         BufferedReader Reader = InitReader();
 
-        java.util.List<String> FileContents = new java.util.ArrayList<>();
+        ArrayList<String> FileContents = new java.util.ArrayList<>();
 
         String Line;
 
@@ -89,7 +90,7 @@ public class FileReader {
 
         // Initialize the reader
 
-        return new BufferedReader(new java.io.FileReader(Path));
+        return new BufferedReader(new java.io.FileReader(this.Path));
 
     }
 

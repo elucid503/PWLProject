@@ -1,30 +1,16 @@
-import Util.Files.FileReader;
-import Util.Files.PathResolver;
+import Classes.Topic;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
-        // Read the file
+        Topic myTopic = new Topic("Topic1");
 
-        try {
+        myTopic.Load();
 
-            PathResolver Resolver = new PathResolver("./ExternalFiles/Article1.txt");
+        myTopic.articleList.getFirst().Read(true);
 
-            System.out.println(Resolver.Resolve());
-
-            FileReader Reader = new FileReader(Resolver.Resolve());
-
-            java.util.List<String> FileContents = Reader.ReadAsStringList();
-
-            System.out.println(FileContents);
-
-        } catch (Exception e) {
-
-            // Error reading file
-            System.out.println(e.getMessage());
-
-        }
+        System.out.println(myTopic.articleList.getFirst().stopWordManager.getStopWordCount());
 
     }
 
