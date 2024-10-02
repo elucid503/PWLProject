@@ -25,7 +25,10 @@ public class ArticleStats {
 
     public int uniqueWords() {
 
-        return (int) article.arrayListContents.stream().distinct().count();
+        // Use hashmap
+
+
+
 
     }
 
