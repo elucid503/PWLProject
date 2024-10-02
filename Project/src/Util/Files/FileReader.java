@@ -56,7 +56,7 @@ public class FileReader {
 
     // Read as string list
 
-    public ArrayList<String> readAsStringList() throws Exception {
+    public ArrayList<String> readAsStringList(boolean individualWords) throws Exception {
 
         // Read the file as a string list
 
@@ -82,7 +82,23 @@ public class FileReader {
 
         }
 
-        // TODO: Convert to individual words
+        if (individualWords) {
+
+            ArrayList<String> Words = new ArrayList<>();
+
+            for (String LineContents : FileContents) {
+
+                for (String Word : LineContents.split(" ")) {
+
+                    Words.add(Word);
+
+                }
+
+            }
+
+            return Words;
+
+        }
 
         return FileContents;
 
