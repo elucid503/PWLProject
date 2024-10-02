@@ -82,6 +82,8 @@ public class FileReader {
 
         }
 
+        // TODO: Convert to individual words
+
         return FileContents;
 
     }
