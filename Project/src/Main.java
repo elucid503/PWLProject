@@ -10,6 +10,7 @@ public class Main {
 
         myTopic.articleList.getFirst().Read(true);
 
+        System.out.println(myTopic.articleList.getFirst().stats.getUniqueWordCount());
         System.out.println(myTopic.articleList.getFirst().stopWordManager.getStopWordCount());
 
     }

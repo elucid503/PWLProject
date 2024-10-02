@@ -33,9 +33,6 @@ public class StopWordManager {
 
         int stopWordCount = 0;
 
-        System.out.println(this.stopWords);
-        System.out.println(this.article.arrayListContents);
-
         for (String word : this.article.arrayListContents) {
 
             if (this.stopWords.contains(word)) {
