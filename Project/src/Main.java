@@ -12,6 +12,7 @@ public class Main {
 
         System.out.println(myTopic.articleList.getFirst().stats.getUniqueWordCount());
         System.out.println(myTopic.articleList.getFirst().stopWordManager.getStopWordCount());
+        System.out.println(myTopic.articleList.getFirst().stats.getWordCount());
 
     }
 
