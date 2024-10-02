@@ -25,7 +25,7 @@ public class StopWordManager {
 
         FileReader fileReader = new FileReader(this.stopWordPath);
 
-        this.stopWords = fileReader.readAsStringList();
+        this.stopWords = fileReader.readAsStringList(true); // Gets individual words
 
     }
 

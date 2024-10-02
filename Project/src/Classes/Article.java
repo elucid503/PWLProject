@@ -28,7 +28,7 @@ public class Article {
     public void Read(boolean lower) throws Exception {
 
         this.plainTextContents = new FileReader(this.filePath).readAsString();
-        this.arrayListContents = new FileReader(this.filePath).readAsStringList();
+        this.arrayListContents = new FileReader(this.filePath).readAsStringList(true); // Gets individual words
 
         if (lower) {
 

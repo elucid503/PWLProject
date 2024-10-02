@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Words {
 
-    public ArrayList<String> convertSentencesToWords(ArrayList<String> sentences) {
+    public static ArrayList<String> convertSentencesToWords(ArrayList<String> sentences) {
 
         ArrayList<String> result = new ArrayList<>();
 

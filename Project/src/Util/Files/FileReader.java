@@ -1,5 +1,7 @@
 package Util.Files;
 
+import Util.Strings.Words;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.util.ArrayList;
@@ -84,19 +86,7 @@ public class FileReader {
 
         if (individualWords) {
 
-            ArrayList<String> Words = new ArrayList<>();
-
-            for (String LineContents : FileContents) {
-
-                for (String Word : LineContents.split(" ")) {
-
-                    Words.add(Word);
-
-                }
-
-            }
-
-            return Words;
+            return Words.convertSentencesToWords(FileContents);
 
         }
 
