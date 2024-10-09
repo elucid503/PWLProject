@@ -1,5 +1,6 @@
 package Classes;
 
+import Classes.Articles.Article;
 import Util.Files.DirReader;
 
 import java.util.ArrayList;

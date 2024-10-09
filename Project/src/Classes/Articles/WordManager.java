@@ -1,10 +1,10 @@
-package Util.Misc;
+package Classes.Articles;
 
-import Classes.Article;
+import Classes.Word;
 import Util.Files.FileReader;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class WordManager {
 
@@ -86,7 +86,37 @@ public class WordManager {
 
     }
 
+    public ArrayList<Word> getUniqueWords(Article article, ArrayList<String> contentsToUse) {
 
+        // Hybrid approach with hashmap and a "Word" class
+
+        HashMap<String, Word> uniqueWords = new HashMap<>();
+
+        for (String word : contentsToUse) {
+
+            if (uniqueWords.containsKey(word)) {
+
+                // Word has been seen before
+
+                uniqueWords.get(word).incrementTimesSeen();
+
+            } else {
+
+                // Word has not been seen before
+
+                uniqueWords.put(word, new Word(word));
+
+            }
+
+        }
+
+        ArrayList<Word> uniqueWordList = new ArrayList<>(uniqueWords.values());
+
+        article.uniqueWords = uniqueWordList;
+
+        return uniqueWordList;
+
+    }
 
 
 }

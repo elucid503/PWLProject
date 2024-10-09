@@ -1,5 +1,7 @@
-import Classes.Article;
+import Classes.Articles.Article;
 import Classes.Topic;
+import Classes.Word;
+import Util.Misc.Sorting;
 
 public class Main {
 
@@ -16,10 +18,16 @@ public class Main {
         System.out.println(firstArticle.stats.getUniqueWordCount());
         System.out.println(firstArticle.stats.getWordCount());
 
-        System.out.println(firstArticle.stopWordManager.getStopWordCount(firstArticle, firstArticle.arrayListContents));
+        System.out.println(firstArticle.wordManager.getStopWordCount(firstArticle, firstArticle.arrayListContents));
 
-        System.out.println(firstArticle.stopWordManager.removePunctuation(firstArticle, firstArticle.arrayListContents));
-        System.out.println(firstArticle.stopWordManager.removeStopWords(firstArticle, firstArticle.punctuationRemovedContents));
+        System.out.println(firstArticle.wordManager.removePunctuation(firstArticle, firstArticle.arrayListContents));
+        System.out.println(firstArticle.wordManager.removeStopWords(firstArticle, firstArticle.punctuationRemovedContents));
+
+        firstArticle.wordManager.getUniqueWords(firstArticle, firstArticle.stopWordRemovedContents);
+
+        for (Word word : Sorting.sortByObjectPropertyCount((firstArticle.uniqueWords), "timesSeen")) {
+            System.out.println(word.contents + " " + word.timesSeen);
+        }
 
     }
 

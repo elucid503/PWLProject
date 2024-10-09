@@ -1,8 +1,7 @@
-package Classes;
+package Classes.Articles;
 
+import Classes.Word;
 import Util.Files.FileReader;
-import Util.Misc.ArticleStats;
-import Util.Misc.WordManager;
 
 import java.util.ArrayList;
 
@@ -18,14 +17,14 @@ public class Article {
     public ArrayList<Word> uniqueWords;
 
     public ArticleStats stats;
-    public WordManager stopWordManager;
+    public WordManager wordManager;
 
     public Article(String filePath) throws Exception {
 
         this.filePath = filePath;
 
         this.stats = new ArticleStats(this);
-        this.stopWordManager = new WordManager();
+        this.wordManager = new WordManager();
 
     }
 

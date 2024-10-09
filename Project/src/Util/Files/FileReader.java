@@ -1,6 +1,6 @@
 package Util.Files;
 
-import Util.Strings.Words;
+import Util.Strings.SentenceManager;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -86,7 +86,7 @@ public class FileReader {
 
         if (individualWords) {
 
-            return Words.convertSentencesToWords(FileContents);
+            return SentenceManager.convertSentencesToWords(FileContents);
 
         }
 

@@ -1,6 +1,4 @@
-package Util.Misc;
-
-import Classes.Article;
+package Classes.Articles;
 
 import java.util.ArrayList;
 import java.util.HashMap;
