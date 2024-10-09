@@ -5,12 +5,13 @@ import java.lang.reflect.Field;
 
 public class Sorting {
 
-    // This method is generic, which means that it can be used for any type of object in an ArrayList with any prop name which can be compared
-    // It uses some more advanced concepts of Java to be able to access the properties of the objects
+    // This method uses some more advanced concepts of Java to be able to access the properties of the objects
+
+    // The <T> in front of the return type is a type generic which means any type of obj passed in will be used as the type for the list returned
 
     public static <T> ArrayList<T> sortByObjectPropertyCount(ArrayList<T> list, String prop) {
 
-        list.sort((o1, o2) -> {
+        list.sort((o1, o2) -> { // ArrayLists by default have .sort method which takes a lambda function
 
             try {
 
