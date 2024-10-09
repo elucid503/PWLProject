@@ -15,6 +15,7 @@ public class Article {
 
     public ArrayList<String> punctuationRemovedContents;
     public ArrayList<String> stopWordRemovedContents;
+    public ArrayList<Word> uniqueWords;
 
     public ArticleStats stats;
     public WordManager stopWordManager;
