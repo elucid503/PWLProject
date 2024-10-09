@@ -1,3 +1,4 @@
+import Classes.Article;
 import Classes.Topic;
 
 public class Main {
@@ -7,12 +8,18 @@ public class Main {
         Topic myTopic = new Topic("Topic1");
 
         myTopic.Load();
+        
+        Article firstArticle = myTopic.articleList.getFirst();
 
-        myTopic.articleList.getFirst().Read(true);
+        firstArticle.Read(true);
 
-        System.out.println(myTopic.articleList.getFirst().stats.getUniqueWordCount());
-        System.out.println(myTopic.articleList.getFirst().stopWordManager.getStopWordCount());
-        System.out.println(myTopic.articleList.getFirst().stats.getWordCount());
+        System.out.println(firstArticle.stats.getUniqueWordCount());
+        System.out.println(firstArticle.stats.getWordCount());
+
+        System.out.println(firstArticle.stopWordManager.getStopWordCount(firstArticle, firstArticle.arrayListContents));
+
+        System.out.println(firstArticle.stopWordManager.removePunctuation(firstArticle, firstArticle.arrayListContents));
+        System.out.println(firstArticle.stopWordManager.removeStopWords(firstArticle, firstArticle.punctuationRemovedContents));
 
     }
 

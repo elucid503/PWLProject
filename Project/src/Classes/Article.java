@@ -2,7 +2,7 @@ package Classes;
 
 import Util.Files.FileReader;
 import Util.Misc.ArticleStats;
-import Util.Misc.StopWordManager;
+import Util.Misc.WordManager;
 
 import java.util.ArrayList;
 
@@ -13,15 +13,18 @@ public class Article {
     public String plainTextContents;
     public ArrayList<String> arrayListContents;
 
+    public ArrayList<String> punctuationRemovedContents;
+    public ArrayList<String> stopWordRemovedContents;
+
     public ArticleStats stats;
-    public StopWordManager stopWordManager;
+    public WordManager stopWordManager;
 
     public Article(String filePath) throws Exception {
 
         this.filePath = filePath;
 
         this.stats = new ArticleStats(this);
-        this.stopWordManager = new StopWordManager(this);
+        this.stopWordManager = new WordManager();
 
     }
 
