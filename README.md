@@ -1,9 +1,9 @@
 # Programming Workshop Lab Semester Project - Article Analysis and Comparison Application
 
 ## Developer Contact:
-- **Paul Ujlaky** - paul.ujlaky@student.fairfield.edu
-- **James Doyle** - james.doyle@student.fairfield.edu
-- **Ronny Cuji** - ronny.cuji@student.fairfield.edu
+- **Paul Ujlaky** - paul.ujlaky@student.fairfield.edu (GitHub: @elucid503)
+- **James Doyle** - james.doyle@student.fairfield.edu (GitHub: @jdoyle2735)
+- **Ronny Cuji** - ronny.cuji@student.fairfield.edu (GitHub: @ronnyc077)
 
 ## Project Statement
 This software application performs basic text analysis with the goal of comparing articles about the same topic/news.
