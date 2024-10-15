@@ -5,6 +5,7 @@
 - **James Doyle** - james.doyle@student.fairfield.edu
 - **Ronny Cuji** - ronny.cuji@student.fairfield.edu
 
+## Project Statement
 This software application performs basic text analysis with the goal of comparing articles about the same topic/news.
 
 ## Features
