@@ -31,7 +31,7 @@ public class Topic {
 
             Article article = new Article(this.dirPath + articleFile);
 
-            // article.Load(); implemented soon
+//             article.Load(); implemented soon
 
             this.articleList.add(article);
 
