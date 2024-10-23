@@ -10,7 +10,7 @@ public class WordManager {
 
     private final String stopWordPath = "./ExternalFiles/StopWords.txt";
 
-    private ArrayList<String> stopWords;
+    public ArrayList<String> stopWords;
 
     public WordManager() throws Exception {
 
@@ -19,6 +19,14 @@ public class WordManager {
     }
 
     private void ReadStopWords() throws Exception {
+
+        // If cached
+
+        if (this.stopWords != null) {
+
+            return;
+
+        }
 
         FileReader fileReader = new FileReader(this.stopWordPath);
 
@@ -48,23 +56,6 @@ public class WordManager {
 
     }
 
-    public int getStopWordCount(Article article, ArrayList<String> contentsToUse) {
-
-        int stopWordCount = 0;
-
-        for (String word : contentsToUse) {
-
-            if (this.stopWords.contains(word)) {
-
-                stopWordCount++;
-
-            }
-
-        }
-
-        return stopWordCount;
-
-    }
 
     public ArrayList<String> removeStopWords(Article article, ArrayList<String> contentsToUse) {
 
@@ -85,39 +76,5 @@ public class WordManager {
         return filteredList;
 
     }
-
-    public ArrayList<Word> getUniqueWords(Article article, ArrayList<String> contentsToUse) {
-
-        // Hybrid approach with hashmap and a "Word" class
-
-        HashMap<String, Word> uniqueWords = new HashMap<>();
-
-        for (String word : contentsToUse) {
-
-            if (uniqueWords.containsKey(word)) {
-
-                // Word has been seen before
-
-                uniqueWords.get(word).incrementTimesSeen();
-
-            } else {
-
-                // Word has not been seen before
-
-                uniqueWords.put(word, new Word(word));
-
-            }
-
-        }
-
-        ArrayList<Word> uniqueWordList = new ArrayList<>(uniqueWords.values());
-
-        article.uniqueWords = uniqueWordList;
-        article.uniqueWordCount = uniqueWordList.size();
-
-        return uniqueWordList;
-
-    }
-
 
 }

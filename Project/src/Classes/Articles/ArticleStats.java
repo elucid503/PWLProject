@@ -1,5 +1,8 @@
 package Classes.Articles;
 
+import Classes.Word;
+import Util.Misc.Sorting;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,6 +17,35 @@ public class ArticleStats {
     }
 
     /**
+     * Article and Stop Words must be loaded before calling this method
+     * @return The number of stop words in the article
+     */
+
+    public int getStopWordCount(ArrayList<String> contentsToUse) {
+
+        if (this.article.wordManager.stopWords == null) {
+
+            return -1; // Must have stop words loaded
+
+        }
+
+        int stopWordCount = 0;
+
+        for (String word : contentsToUse) {
+
+            if (this.article.wordManager.stopWords.contains(word)) {
+
+                stopWordCount++;
+
+            }
+
+        }
+
+        return stopWordCount;
+
+    }
+
+    /**
      * Article must be loaded before calling this method
      * @return The number of words in the article
      */
@@ -23,43 +55,83 @@ public class ArticleStats {
         return article.plainTextContents.split(" ").length;
 
     }
+    
+    /**
+     * Article must have its stopWordRemovedContents loaded before calling this method
+     * @return The number of characters in the article
+     */
 
-    public int getUniqueWordCount() {
+    public ArrayList<Word> getUniqueWords() {
 
-        // Use hashmap
+        // Caching
 
-        ArrayList<String> articleList = article.arrayListContents;
+        if (article.uniqueWords != null) {
 
-        ArrayList<String> uniqueWords = new ArrayList<>();
+            return article.uniqueWords; // Assuming article.uniqueWordsSize is not null also
 
-        HashMap<String, Integer> wordCount = new HashMap<>();
+        }
 
-        for (String word : articleList) {
+        // Hybrid approach with hashmap and a "Word" class
 
-            if (wordCount.containsKey(word)) {
+        HashMap<String, Word> uniqueWords = new HashMap<>();
 
-                wordCount.put(word, wordCount.get(word) + 1);
+        for (String word : article.stopWordRemovedContents) {
+
+            if (uniqueWords.containsKey(word)) {
+
+                // Word has been seen before
+
+                uniqueWords.get(word).incrementTimesSeen();
 
             } else {
 
-                wordCount.put(word, 1);
+                // Word has not been seen before
+
+                uniqueWords.put(word, new Word(word));
 
             }
 
         }
 
-        for (String word : wordCount.keySet()) {
+        ArrayList<Word> uniqueWordList = new ArrayList<>(uniqueWords.values());
 
-            if (wordCount.get(word) == 1) {
+        article.uniqueWords = uniqueWordList;
+        article.uniqueWordCount = uniqueWordList.size();
 
-                uniqueWords.add(word);
+        return uniqueWordList;
+
+    }
+
+    public int getUniqueWordCount() {
+
+        return this.article.uniqueWords.size();
+
+    }
+
+    /**
+     * Article must have its uniqueWords loaded before calling this method
+     * @param timesSeen The minimum number of times a word must have been seen to be included in the list
+     * @return The most used unique words in the article
+     */
+    
+    public ArrayList<Word> getMostUsedUniqueWords(int timesSeen) {
+        
+        ArrayList<Word> sortedWords = Sorting.sortByObjectPropertyCount(this.article.uniqueWords, "timesSeen");
+
+        ArrayList<Word> mostUniqueWords = new ArrayList<>();
+
+        sortedWords.forEach((word) -> {
+
+            if (word.timesSeen >= timesSeen) {
+
+                mostUniqueWords.add(word);
 
             }
 
-        }
+        });
 
-        return uniqueWords.size();
-
+        return mostUniqueWords;
+        
     }
 
 }

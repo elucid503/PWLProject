@@ -27,7 +27,7 @@ public class ArticleManager {
 
                 currentArticle.wordManager.removeStopWords(currentArticle, currentArticle.wordManager.removePunctuation(currentArticle, currentArticle.arrayListContents));
                 currentArticle.wordManager.removeStopWords(currentArticle, currentArticle.wordManager.removePunctuation(currentArticle, currentArticle.arrayListContents));
-                currentArticle.wordManager.getUniqueWords(currentArticle, currentArticle.stopWordRemovedContents);
+                currentArticle.stats.getUniqueWords();
 
             } catch (Exception e) {
 
@@ -42,4 +42,5 @@ public class ArticleManager {
         return sortedArticles.getFirst(); // TODO: Verify this all works :)
 
     }
+
 }

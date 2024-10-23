@@ -13,11 +13,15 @@ public class Topic {
 
     private final String dirPath;
 
+    public ArticleManager articleManager;
+
     public Topic(String topicName) {
 
         this.topicName = topicName;
 
         this.dirPath = "./ExternalFiles/" + topicName + "/";
+
+        this.articleManager = new ArticleManager(this);
 
     }
 

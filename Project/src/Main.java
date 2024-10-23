@@ -1,33 +1,17 @@
 import Classes.Articles.Article;
 import Topics.Topic;
-import Classes.Word;
-import Util.Misc.Sorting;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        Topic myTopic = new Topic("Topic1");
+        Topic myTopic = new Topic("StarshipCatch");
 
         myTopic.Load();
-        
-        Article firstArticle = myTopic.articleList.getFirst();
 
-        firstArticle.Read(true);
+        Article richest = myTopic.articleManager.getArticleWithRichestVocab();
 
-        System.out.println(firstArticle.stats.getUniqueWordCount());
-        System.out.println(firstArticle.stats.getWordCount());
-
-        System.out.println(firstArticle.wordManager.getStopWordCount(firstArticle, firstArticle.arrayListContents));
-
-        System.out.println(firstArticle.wordManager.removePunctuation(firstArticle, firstArticle.arrayListContents));
-        System.out.println(firstArticle.wordManager.removeStopWords(firstArticle, firstArticle.punctuationRemovedContents));
-
-        firstArticle.wordManager.getUniqueWords(firstArticle, firstArticle.stopWordRemovedContents);
-
-        for (Word word : Sorting.sortByObjectPropertyCount((firstArticle.uniqueWords), "timesSeen")) {
-            System.out.println(word.contents + " " + word.timesSeen);
-        }
+        richest.stats.getMostUsedUniqueWords(10).forEach((word) -> System.out.println(word.contents)); // get words with the highest frequency
 
     }
 
