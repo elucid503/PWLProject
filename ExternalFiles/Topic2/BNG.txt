@@ -1,0 +1,21 @@
+Since Starliner’s Crew Flight Test (CFT) launch on June 5, Boeing and NASA have conducted extensive testing of its propulsion system in space and on the ground. Those tests include:
+7 ground tests of a Reaction Control System (RCS) thruster pulled from the Starliner-1 Service Module:
+1 launch-to-docking test with more than 1,000 pulses to simulate actual CFT conditions
+5 undock-to-deorbit tests with 500 pulses to simulate potential CFT return conditions
+1 bonus ground test to more closely simulate the higher thermal conditions CFT thrusters experienced during launch-to-docking
+After the ground tests, that thruster was inspected, disassembled and scanned
+1 free-flight hot fire of 5 aft-facing thrusters prior to docking, returning 6-degree of freedom (DOF) axis control
+2 docked hot fire tests — the first on 7 of 8 aft-facing thrusters, the second on 27 of 28 total thrusters
+Roughly 100,000 computer model simulations representing potential variables and conditions Starliner could experience during undocking, the deorbit burn and landing
+Review of Orbital Maneuvering and Attitude Control (OMAC) engine performance to support the CFT deorbit burn
+Use of new tools to profile instances of RCS thruster degradation, showing Starliner’s ability to fly a nominal deorbit burn profile
+9 hardware and software integrated tabletops, 18 runs, and 230 hours of testing in the Avionics and Software Integration Lab (ASIL)
+1 integrated undocking simulation with crew, CST-100 flight controllers, ISS Flight Controllers and engineers
+3 backup control entry training runs by Commander Butch Wilmore using Boeing’s onboard crew training simulator
+Detailed inspections of thrusters on a previously built Service Module
+Starliner-1 and Starliner-2 inspections of the propulsion system doghouses, where RCS thrusters are located
+Review of OFT and OFT-2 flight data for a comparative analysis of extreme RCS thruster usage and temperatures
+Measurements of helium leak rate data
+Supplier-level testing, analysis and inspections
+Material testing
+Boeing remains confident in the Starliner spacecraft and its ability to return safely with crew. We continue to support NASA’s requests for additional testing, data, analysis and reviews to affirm the spacecraft’s safe undocking and landing capabilities. Our confidence is based on this abundance of valuable testing from Boeing and NASA. The testing has confirmed 27 of 28 RCS thrusters are healthy and back to full operational capability. Starliner’s propulsion system also maintains redundancy and the helium levels remain stable. The data also supports root cause assessments for the helium and thruster issues and flight rationale for Starliner and its crew’s return to Earth.
