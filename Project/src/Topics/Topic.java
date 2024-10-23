@@ -1,4 +1,4 @@
-package Classes;
+package Topics;
 
 import Classes.Articles.Article;
 import Util.Files.DirReader;

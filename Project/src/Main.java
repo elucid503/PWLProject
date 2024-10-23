@@ -1,5 +1,5 @@
 import Classes.Articles.Article;
-import Classes.Topic;
+import Topics.Topic;
 import Classes.Word;
 import Util.Misc.Sorting;
 

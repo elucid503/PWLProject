@@ -113,6 +113,7 @@ public class WordManager {
         ArrayList<Word> uniqueWordList = new ArrayList<>(uniqueWords.values());
 
         article.uniqueWords = uniqueWordList;
+        article.uniqueWordCount = uniqueWordList.size();
 
         return uniqueWordList;
 

@@ -16,6 +16,8 @@ public class Article {
     public ArrayList<String> stopWordRemovedContents;
     public ArrayList<Word> uniqueWords;
 
+    public int uniqueWordCount;
+
     public ArticleStats stats;
     public WordManager wordManager;
 
@@ -29,6 +31,22 @@ public class Article {
     }
 
     public void Read(boolean lower) throws Exception {
+
+        // If cached
+
+        if (this.plainTextContents != null) {
+
+            if (lower) {
+
+                this.plainTextContents = this.plainTextContents.toLowerCase();
+
+                this.arrayListContents.replaceAll(String::toLowerCase);
+
+            }
+
+            return;
+
+        }
 
         this.plainTextContents = new FileReader(this.filePath).readAsString();
         this.arrayListContents = new FileReader(this.filePath).readAsStringList(true); // Gets individual words
