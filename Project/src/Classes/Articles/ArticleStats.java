@@ -17,35 +17,6 @@ public class ArticleStats {
     }
 
     /**
-     * Article and Stop Words must be loaded before calling this method
-     * @return The number of stop words in the article
-     */
-
-    public int getStopWordCount(ArrayList<String> contentsToUse) {
-
-        if (this.article.wordManager.stopWords == null) {
-
-            return -1; // Must have stop words loaded
-
-        }
-
-        int stopWordCount = 0;
-
-        for (String word : contentsToUse) {
-
-            if (this.article.wordManager.stopWords.contains(word)) {
-
-                stopWordCount++;
-
-            }
-
-        }
-
-        return stopWordCount;
-
-    }
-
-    /**
      * Article must be loaded before calling this method
      * @return The number of words in the article
      */
