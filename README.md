@@ -80,3 +80,6 @@ This software application performs basic text analysis with the goal of comparin
 ## How to Run:
 1. Add your article text files into the respective `Topic` folders within the project directory.
 2. Execute the main program. It will automatically load the articles, remove stop words, and analyze word frequencies for comparison.
+
+## Diagram
+![Diagram](https://raw.githubusercontent.com/elucid503/PWLProject/refs/heads/main/Docs/Milestone1/UMLDiagram.png)
