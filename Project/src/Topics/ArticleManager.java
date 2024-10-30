@@ -21,13 +21,9 @@ public class ArticleManager {
 
             try {
 
-                currentArticle.Read(true);
+                currentArticle.read(true);
 
-                // TODO: Consolidate this
-
-                currentArticle.wordManager.removeStopWords(currentArticle, currentArticle.wordManager.removePunctuation(currentArticle, currentArticle.arrayListContents));
-                currentArticle.wordManager.removeStopWords(currentArticle, currentArticle.wordManager.removePunctuation(currentArticle, currentArticle.arrayListContents));
-                currentArticle.stats.getUniqueWords();
+                currentArticle.process();
 
             } catch (Exception e) {
 

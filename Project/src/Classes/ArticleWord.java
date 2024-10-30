@@ -1,11 +1,11 @@
 package Classes;
 
-public class Word {
+public class ArticleWord {
 
     public String contents;
     public int timesSeen;
 
-    public Word(String contents) {
+    public ArticleWord(String contents) {
 
         this.contents = contents;
         this.timesSeen = 1;

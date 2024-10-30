@@ -1,36 +1,45 @@
 package Classes.Articles;
 
-import Classes.Word;
+import Classes.ArticleWord;
 import Util.Files.FileReader;
 
 import java.util.ArrayList;
 
 public class Article {
 
-    private final String filePath;
+    final String filePath;
 
     public String plainTextContents;
     public ArrayList<String> arrayListContents;
 
     public ArrayList<String> punctuationRemovedContents;
     public ArrayList<String> stopWordRemovedContents;
-    public ArrayList<Word> uniqueWords;
+    public ArrayList<ArticleWord> uniqueWords;
 
     public int uniqueWordCount;
 
     public ArticleStats stats;
     public WordManager wordManager;
+    public SentimentRanker sentimentRanker;
 
     public Article(String filePath) throws Exception {
 
         this.filePath = filePath;
 
         this.stats = new ArticleStats(this);
+        this.sentimentRanker = new SentimentRanker(this);
+
         this.wordManager = new WordManager();
 
     }
 
-    public void Read(boolean lower) throws Exception {
+    public String getName() {
+
+        return this.filePath;
+
+    }
+
+    public void read(boolean lower) throws Exception {
 
         // If cached
 
@@ -63,4 +72,14 @@ public class Article {
 
     }
 
+    public void process() throws Exception {
+
+        this.read(true);
+        
+        this.wordManager.removeStopWords(this, this.wordManager.removePunctuation(this, this.arrayListContents));
+        this.wordManager.removeStopWords(this, this.wordManager.removePunctuation(this, this.arrayListContents));
+        this.stats.getUniqueWords();
+
+    }
+    
 }

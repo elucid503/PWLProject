@@ -1,10 +1,8 @@
 package Classes.Articles;
 
-import Classes.Word;
 import Util.Files.FileReader;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class WordManager {
 

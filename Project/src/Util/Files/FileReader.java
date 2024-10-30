@@ -4,6 +4,7 @@ import Util.Strings.SentenceManager;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class FileReader {
@@ -94,7 +95,7 @@ public class FileReader {
 
     }
 
-    private BufferedReader InitReader() throws Exception {
+    private BufferedReader InitReader() throws FileNotFoundException {
 
         // Initialize the reader
 

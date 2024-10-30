@@ -5,13 +5,17 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        Topic myTopic = new Topic("StarshipCatch");
+        Topic myTopic = new Topic("Starliner");
 
         myTopic.Load();
 
-        Article richest = myTopic.articleManager.getArticleWithRichestVocab();
+        for (Article article : myTopic.articleList) {
 
-        richest.stats.getMostUsedUniqueWords(10).forEach((word) -> System.out.println(word.contents)); // get words with the highest frequency
+            float sentimentRank = article.sentimentRanker.rank();
+
+            System.out.println("Sentiment for " + article.getName() + ": " + sentimentRank);
+
+        }
 
     }
 

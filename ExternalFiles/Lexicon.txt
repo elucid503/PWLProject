@@ -817,7 +817,7 @@ calmness	1.7
 calmnesses	1.6
 calmodulin	0.2
 calms	1.3
-can't	stand
+can't	-1.0
 cancel	-1.0
 cancelled	-1.0
 cancelling	-0.8
@@ -2422,7 +2422,6 @@ fearlessly	1.1
 fearlessness	1.1
 fears	-1.8
 fearsome	-1.7
-fed	up
 feeble	-1.2
 feeling	0.5
 felonies	-2.5
@@ -5465,7 +5464,6 @@ screwbean	0.3
 screwdriver	0.3
 screwdrivers	0.1
 screwed	-2.2
-screwed	up
 screwer	-1.2
 screwers	-0.5
 screwier	-0.6

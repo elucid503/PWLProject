@@ -1,6 +1,6 @@
 package Classes.Articles;
 
-import Classes.Word;
+import Classes.ArticleWord;
 import Util.Misc.Sorting;
 
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class ArticleStats {
      * @return The number of characters in the article
      */
 
-    public ArrayList<Word> getUniqueWords() {
+    public ArrayList<ArticleWord> getUniqueWords() {
 
         // Caching
 
@@ -44,7 +44,7 @@ public class ArticleStats {
 
         // Hybrid approach with hashmap and a "Word" class
 
-        HashMap<String, Word> uniqueWords = new HashMap<>();
+        HashMap<String, ArticleWord> uniqueWords = new HashMap<>();
 
         for (String word : article.stopWordRemovedContents) {
 
@@ -58,13 +58,13 @@ public class ArticleStats {
 
                 // Word has not been seen before
 
-                uniqueWords.put(word, new Word(word));
+                uniqueWords.put(word, new ArticleWord(word));
 
             }
 
         }
 
-        ArrayList<Word> uniqueWordList = new ArrayList<>(uniqueWords.values());
+        ArrayList<ArticleWord> uniqueWordList = new ArrayList<>(uniqueWords.values());
 
         article.uniqueWords = uniqueWordList;
         article.uniqueWordCount = uniqueWordList.size();
@@ -85,11 +85,11 @@ public class ArticleStats {
      * @return The most used unique words in the article
      */
     
-    public ArrayList<Word> getMostUsedUniqueWords(int timesSeen) {
+    public ArrayList<ArticleWord> getMostUsedUniqueWords(int timesSeen) {
         
-        ArrayList<Word> sortedWords = Sorting.sortByObjectPropertyCount(this.article.uniqueWords, "timesSeen");
+        ArrayList<ArticleWord> sortedWords = Sorting.sortByObjectPropertyCount(this.article.uniqueWords, "timesSeen");
 
-        ArrayList<Word> mostUniqueWords = new ArrayList<>();
+        ArrayList<ArticleWord> mostUniqueWords = new ArrayList<>();
 
         sortedWords.forEach((word) -> {
 
