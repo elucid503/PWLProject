@@ -6,6 +6,10 @@ import Util.Misc.Sorting;
 
 import java.util.ArrayList;
 
+/**
+ * This class is responsible for comparing articles statistics. Could be expanded more on in the future.
+ * */
+
 public class ArticleManager {
 
     Topic relatedTopic;
@@ -15,6 +19,12 @@ public class ArticleManager {
         this.relatedTopic = relatedTopic;
 
     }
+
+    /**
+     * This uses the Sorting class to sort the articles by their word count and returns the article with the most words
+     *
+     * @return The article object with the most unique words
+     * */
 
     public Article getArticleWithRichestVocab() {
 

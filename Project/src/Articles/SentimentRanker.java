@@ -6,6 +6,11 @@ import Util.Files.PathResolver;
 
 import java.util.ArrayList;
 
+/**
+ * This class is responsible for ranking the sentiment of an article
+ * based on a lexicon of words with associated sentiment values.
+ * */
+
 public class SentimentRanker {
 
     Article relatedArticle;
@@ -21,6 +26,11 @@ public class SentimentRanker {
 
     }
 
+    /**
+     * Reads the lexicon words from Lexicon.txt
+     * @throws Exception - If the file cannot be read or if the file does not exist
+     * */
+
     public void readLexiconWords() throws Exception {
 
         FileReader reader = new FileReader(new PathResolver(("./ExternalFiles/Lexicon.txt")).Resolve());
@@ -28,6 +38,10 @@ public class SentimentRanker {
         this.rawLexiconWords = reader.readAsStringList(false);
 
     }
+
+    /**
+     * Parses the lexicon words into LexiconWord objects using the LexiconWord class's split method
+     * */
 
     public void parseLexiconWords() {
 
@@ -46,6 +60,12 @@ public class SentimentRanker {
         this.parsedLexiconWords = lexiconWords;
 
     }
+
+    /**
+     * Ranks the sentiment of the article based on the lexicon words
+     * @return The sentiment rank of the article
+     * @throws Exception - If the lexicon words cannot be read or if the lexicon words file does not exist
+     * */
 
     public float rank() throws Exception {
 

@@ -5,6 +5,10 @@ import Util.Files.FileReader;
 
 import java.util.ArrayList;
 
+/**
+ * Represents an article within a topic
+ * */
+
 public class Article {
 
     final String filePath;
@@ -28,11 +32,25 @@ public class Article {
 
     }
 
+    /**
+     * getName splits the path to get the last element, which is the name of the file
+     *
+     * @return The name of the file
+     */
+
     public String getName() {
 
         return this.filePath.split("/")[this.filePath.split("/").length - 1];
 
     }
+
+    /**
+     * Reads the file and stores the contents in plainTextContents and arrayListContents
+     * Optionally, converts the contents to lowercase
+     *
+     * @param lower - Whether to convert the contents to lowercase
+     * @throws Exception - If the file cannot be read or if the file does not exist
+     */
 
     public void read(boolean lower) throws Exception {
 
@@ -66,6 +84,14 @@ public class Article {
         }
 
     }
+
+    /**
+     * Processes the contents of the article
+     * Removes punctuation and stop words
+     * Gets the unique words
+     *
+     * @throws Exception - If the file cannot be read or if the file does not exist
+     */
 
     public void process() throws Exception {
 

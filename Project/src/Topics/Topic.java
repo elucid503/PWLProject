@@ -5,6 +5,11 @@ import Util.Files.DirReader;
 
 import java.util.ArrayList;
 
+/**
+ * This class represents a topic, which is comprised of articles
+ * This contains a method which parses the directory related to the topic and then reads the articles in the directory
+ * */
+
 public class Topic {
 
     public String topicName;
@@ -25,17 +30,20 @@ public class Topic {
 
     }
 
-    public void Load() throws Exception {
+    /**
+     * Reads the articles in the directory corresponding to the topic
+     * @throws Exception - If the directory cannot be read or if the directory does not exist
+     * */
 
-        DirReader dirReader = new DirReader(dirPath);
+    public void load() throws Exception {
 
-        ArrayList<String> articleFileList = dirReader.Read();
+        ArrayList<String> articleFileList = DirReader.read(this.dirPath);
 
         for (String articleFile : articleFileList) {
 
             Article article = new Article(this.dirPath + articleFile);
 
-             article.read(true);
+            article.read(true);
 
             this.articleList.add(article);
 

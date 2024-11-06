@@ -4,23 +4,25 @@ import java.nio.file.DirectoryStream;
 
 import java.util.ArrayList;
 
+/**
+ * This class is responsible for reading a directory
+ * */
+
 public class DirReader {
 
-    private final String path;
+    /**
+     * Reads the directory and lists all file names
+     * @return An ArrayList of file names
+     * @throws Exception - If the directory cannot be read or if the directory does not exist
+     * */
 
-    public DirReader(String path) {
+    public static ArrayList<String> read(String path) throws Exception {
 
-        this.path = path;
-
-    }
-
-    public ArrayList<String> Read() throws Exception {
-
-        // Read the directory and list all file names
+        // read the directory and list all file names
 
         ArrayList<String> fileNames = new ArrayList<>();
 
-        try (DirectoryStream<java.nio.file.Path> stream = java.nio.file.Files.newDirectoryStream(java.nio.file.Paths.get(this.path))) {
+        try (DirectoryStream<java.nio.file.Path> stream = java.nio.file.Files.newDirectoryStream(java.nio.file.Paths.get(path))) {
 
             for (java.nio.file.Path entry : stream) {
 

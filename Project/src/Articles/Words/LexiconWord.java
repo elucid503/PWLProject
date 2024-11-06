@@ -2,6 +2,10 @@ package Articles.Words;
 
 import java.util.Arrays;
 
+/**
+ * Represents a word with a lexicon ranking, found in Lexicon.txt
+ * */
+
 public class LexiconWord {
 
     public String lexiconLine;
@@ -14,6 +18,10 @@ public class LexiconWord {
         this.lexiconLine = lexiconLine;
 
     }
+
+    /**
+     * Splits the lexicon line into the contents and ranking based on the predetermined syntax of the lexicon.txt file
+     * * */
 
     public void split() {
 

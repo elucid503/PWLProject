@@ -29,7 +29,7 @@ public class FileReader {
 
     public String readAsString() throws Exception {
 
-        // Read the file as a string
+        // read the file as a string
 
         BufferedReader Reader = this.InitReader();
 
@@ -47,7 +47,7 @@ public class FileReader {
 
         } catch (Exception e) {
 
-            // Read exception
+            // read exception
 
             throw new Exception("Error reading file");
 
@@ -57,11 +57,11 @@ public class FileReader {
 
     }
 
-    // Read as string list
+    // read as string list
 
     public ArrayList<String> readAsStringList(boolean individualWords) throws Exception {
 
-        // Read the file as a string list
+        // read the file as a string list
 
         BufferedReader Reader = InitReader();
 

@@ -7,6 +7,10 @@ import Util.Misc.Sorting;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * This class is responsible for doing operations / calculating statistics with the words in an article
+ * */
+
 public class WordManager {
 
     Article article;
@@ -105,6 +109,11 @@ public class WordManager {
 
     }
 
+    /**
+     * Reads the stop words from StopWords.txt
+     * @throws Exception - If the file cannot be read or if the file does not exist
+     * */
+
     private void readStopWords() throws Exception {
 
         // If cached
@@ -120,6 +129,12 @@ public class WordManager {
         this.stopWords = fileReader.readAsStringList(true); // Gets individual words
 
     }
+
+    /**
+     * Removes punctuation from the contents of the article
+     * @param contents The contents of the article
+     * @return The contents of the article with punctuation removed
+     * */
 
     public ArrayList<String> removePunctuation(ArrayList<String> contents) {
 
@@ -142,6 +157,11 @@ public class WordManager {
         return filteredList;
 
     }
+
+    /**
+     * Removes stop words from the contents of the article
+     * @param contentsToUse The contents of the article
+     * */
 
     public void removeStopWords(ArrayList<String> contentsToUse) {
 
