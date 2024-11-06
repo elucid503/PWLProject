@@ -1,6 +1,6 @@
-package Classes.Articles;
+package Articles;
 
-import Classes.LexiconWord;
+import Articles.Words.LexiconWord;
 import Util.Files.FileReader;
 import Util.Files.PathResolver;
 

@@ -1,9 +1,9 @@
-package Util.Strings;
+package Util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SentenceManager {
+public class Strings {
 
     public static ArrayList<String> convertSentencesToWords(ArrayList<String> sentences) {
 

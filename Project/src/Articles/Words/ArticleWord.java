@@ -1,4 +1,4 @@
-package Classes;
+package Articles.Words;
 
 public class ArticleWord {
 

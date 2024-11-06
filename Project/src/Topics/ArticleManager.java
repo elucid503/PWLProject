@@ -1,6 +1,6 @@
 package Topics;
 
-import Classes.Articles.Article;
+import Articles.Article;
 import Util.Misc.Logging;
 import Util.Misc.Sorting;
 

@@ -1,4 +1,4 @@
-package Classes;
+package Articles.Words;
 
 import java.util.Arrays;
 

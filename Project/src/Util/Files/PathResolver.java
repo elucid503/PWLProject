@@ -12,7 +12,8 @@ public class PathResolver {
 
     public String Resolve() {
 
-        // Resolve the path
+        // Resolves the relative path using the system property API
+        // A bit niche, but does the job
 
         return System.getProperty("user.dir") + "/" + this.Path;
 

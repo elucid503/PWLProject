@@ -1,5 +1,3 @@
-import Classes.Articles.Article;
-import Topics.Topic;
 import Util.Misc.Logging;
 
 public class Main {

@@ -1,6 +1,6 @@
-package Classes.Articles;
+package Articles;
 
-import Classes.ArticleWord;
+import Articles.Words.ArticleWord;
 import Util.Files.FileReader;
 import Util.Misc.Sorting;
 

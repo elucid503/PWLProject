@@ -1,6 +1,6 @@
 package Topics;
 
-import Classes.Articles.Article;
+import Articles.Article;
 import Util.Files.DirReader;
 
 import java.util.ArrayList;
