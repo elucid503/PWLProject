@@ -69,19 +69,9 @@ public class FileReader {
 
         String Line;
 
-        try {
+        while ((Line = Reader.readLine()) != null) {
 
-            while ((Line = Reader.readLine()) != null) {
-
-                FileContents.add(Line);
-
-            }
-
-        } catch (Exception e) {
-
-            // Read exception
-
-            throw new Exception("Error reading file");
+            FileContents.add(Line);
 
         }
 

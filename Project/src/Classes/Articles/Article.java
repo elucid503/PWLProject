@@ -16,9 +16,6 @@ public class Article {
     public ArrayList<String> stopWordRemovedContents;
     public ArrayList<ArticleWord> uniqueWords;
 
-    public int uniqueWordCount;
-
-    public ArticleStats stats;
     public WordManager wordManager;
     public SentimentRanker sentimentRanker;
 
@@ -26,16 +23,14 @@ public class Article {
 
         this.filePath = filePath;
 
-        this.stats = new ArticleStats(this);
         this.sentimentRanker = new SentimentRanker(this);
-
-        this.wordManager = new WordManager();
+        this.wordManager = new WordManager(this);
 
     }
 
     public String getName() {
 
-        return this.filePath;
+        return this.filePath.split("/")[this.filePath.split("/").length - 1];
 
     }
 
@@ -76,9 +71,9 @@ public class Article {
 
         this.read(true);
         
-        this.wordManager.removeStopWords(this, this.wordManager.removePunctuation(this, this.arrayListContents));
-        this.wordManager.removeStopWords(this, this.wordManager.removePunctuation(this, this.arrayListContents));
-        this.stats.getUniqueWords();
+        this.wordManager.removeStopWords(this.wordManager.removePunctuation(this.arrayListContents));
+        this.wordManager.removeStopWords(this.wordManager.removePunctuation(this.arrayListContents));
+        this.wordManager.getUniqueWords();
 
     }
     

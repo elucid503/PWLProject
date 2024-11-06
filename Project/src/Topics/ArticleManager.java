@@ -1,6 +1,7 @@
 package Topics;
 
 import Classes.Articles.Article;
+import Util.Misc.Logging;
 import Util.Misc.Sorting;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class ArticleManager {
 
             } catch (Exception e) {
 
-                e.printStackTrace(); // TODO: Replace w logging system
+                Logging.log(Logging.ERROR, "Failed to read and process article: " + currentArticle.getName());
 
             }
 
@@ -35,7 +36,7 @@ public class ArticleManager {
 
         ArrayList<Article> sortedArticles = Sorting.sortByObjectPropertyCount(relatedTopic.articleList, "uniqueWordCount");
 
-        return sortedArticles.getFirst(); // TODO: Verify this all works :)
+        return sortedArticles.getFirst();
 
     }
 

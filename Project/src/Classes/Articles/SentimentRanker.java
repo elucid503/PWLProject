@@ -21,19 +21,15 @@ public class SentimentRanker {
 
     }
 
-    public ArrayList<String> readLexiconWords() throws Exception {
+    public void readLexiconWords() throws Exception {
 
         FileReader reader = new FileReader(new PathResolver(("./ExternalFiles/Lexicon.txt")).Resolve());
 
-        ArrayList<String> words = reader.readAsStringList(false);
-
-        this.rawLexiconWords = words;
-
-        return words;
+        this.rawLexiconWords = reader.readAsStringList(false);
 
     }
 
-    public ArrayList<LexiconWord> parseLexiconWords() {
+    public void parseLexiconWords() {
 
         final ArrayList<LexiconWord> lexiconWords = new ArrayList<>();
 
@@ -48,8 +44,6 @@ public class SentimentRanker {
         });
 
         this.parsedLexiconWords = lexiconWords;
-
-        return lexiconWords;
 
     }
 
@@ -69,8 +63,6 @@ public class SentimentRanker {
             for (LexiconWord lexiconWord : parsedLexiconWords) {
 
                 if (lexiconWord.contents.contains(word)) {
-
-//                    System.out.println("Found word: " + word + " with rank: " + lexiconWord.ranking);
 
                     sentimentRank += lexiconWord.ranking;
 
