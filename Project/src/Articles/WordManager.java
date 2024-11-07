@@ -10,7 +10,6 @@ import java.util.HashMap;
 /**
  * This class is responsible for doing operations / calculating statistics with the words in an article
  * */
-
 public class WordManager {
 
     Article article;
@@ -33,7 +32,6 @@ public class WordManager {
      * * Article must be loaded before calling this method
      * @return The number of words in the article
      * */
-
     public int getWordCount() {
 
         return article.plainTextContents.split(" ").length;
@@ -43,7 +41,6 @@ public class WordManager {
     /**
      * Article must have its stopWordRemovedContents loaded before calling this method
      */
-
     public void getUniqueWords() {
 
         // Caching
@@ -88,7 +85,6 @@ public class WordManager {
      * @param timesSeen The minimum number of times a word must have been seen to be included in the list
      * @return The most used unique words in the article
      */
-
     public ArrayList<ArticleWord> getMostUsedUniqueWords(int timesSeen) {
 
         ArrayList<ArticleWord> sortedWords = Sorting.sortByObjectPropertyCount(this.article.uniqueWords, "timesSeen");
@@ -113,7 +109,6 @@ public class WordManager {
      * Reads the stop words from StopWords.txt
      * @throws Exception - If the file cannot be read or if the file does not exist
      * */
-
     private void readStopWords() throws Exception {
 
         // If cached
@@ -135,7 +130,6 @@ public class WordManager {
      * @param contents The contents of the article
      * @return The contents of the article with punctuation removed
      * */
-
     public ArrayList<String> removePunctuation(ArrayList<String> contents) {
 
         ArrayList<String> filteredList = new ArrayList<>();
@@ -162,7 +156,6 @@ public class WordManager {
      * Removes stop words from the contents of the article
      * @param contentsToUse The contents of the article
      * */
-
     public void removeStopWords(ArrayList<String> contentsToUse) {
 
         ArrayList<String> filteredList = new ArrayList<>();

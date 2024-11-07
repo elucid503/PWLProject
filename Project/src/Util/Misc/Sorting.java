@@ -3,10 +3,22 @@ package Util.Misc;
 import java.util.ArrayList;
 import java.lang.reflect.Field;
 
+/**
+ * This class contains miscellaneous sorting methods
+ * */
+
 public class Sorting {
 
-    // This method uses some more advanced concepts of Java to be able to access the properties of the objects
+    // NOTE: This method uses some more advanced concepts of Java to be able to access the properties of the objects
     // The <T> in front of the return type is a type generic which means any type of obj passed in will be used as the type for the list returned
+
+    /**
+     * Sorts an ArrayList of objects by a specified property of the object
+     * @param list The list of objects to sort
+     * @param prop The property of the object to sort by
+     * @param <T> The generic type of object in the list
+     * @return The sorted list
+     * */
 
     public static <T> ArrayList<T> sortByObjectPropertyCount(ArrayList<T> list, String prop) {
 

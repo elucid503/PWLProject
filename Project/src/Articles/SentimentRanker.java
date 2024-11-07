@@ -33,7 +33,7 @@ public class SentimentRanker {
 
     public void readLexiconWords() throws Exception {
 
-        FileReader reader = new FileReader(new PathResolver(("./ExternalFiles/Lexicon.txt")).Resolve());
+        FileReader reader = new FileReader(PathResolver.resolve("./ExternalFiles/Lexicon.txt"));
 
         this.rawLexiconWords = reader.readAsStringList(false);
 

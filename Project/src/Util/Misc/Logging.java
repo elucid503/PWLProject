@@ -3,6 +3,11 @@ package Util.Misc;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * This class is responsible for logging messages in a specific format
+ * It contains some enumerated values for the log levels
+ * */
+
 public class Logging {
 
     public static final int DEBUG = 0;
@@ -16,6 +21,7 @@ public class Logging {
      * @param message - the message to log
      * @throws IllegalArgumentException - if the level is not 0, 1, or 2 (so use the class enums)
      */
+
     public static void log(int level, String message) throws IllegalArgumentException {
 
         if (level > 2 || level < 0) {

@@ -7,6 +7,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+/**
+ * This class is responsible for reading a file
+ * It is not static as it instates and checks if the file exists. Afterward, is lazy until a read method is called
+ * */
+
 public class FileReader {
 
     private final String Path;
@@ -26,6 +31,12 @@ public class FileReader {
         this.Path = Path;
 
     }
+
+    /**
+     * Reads the file as a string
+     * @return The file contents as a string
+     * @throws Exception - If the file cannot be read
+     */
 
     public String readAsString() throws Exception {
 
@@ -57,7 +68,12 @@ public class FileReader {
 
     }
 
-    // read as string list
+    /**
+     * Reads the file as a string list
+     * @param individualWords - If true, the file will be read as a list of individual words
+     * @return The file contents as a string ArrayList
+     * @throws Exception - If the file cannot be read
+     */
 
     public ArrayList<String> readAsStringList(boolean individualWords) throws Exception {
 
@@ -84,6 +100,12 @@ public class FileReader {
         return FileContents;
 
     }
+
+    /**
+     * An internal method to handle the initialization of the reader
+     * @return The BufferedReader object
+     * @throws FileNotFoundException - If the file cannot be found, but should not happen due to class constructor
+     */
 
     private BufferedReader InitReader() throws FileNotFoundException {
 
