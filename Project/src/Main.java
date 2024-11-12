@@ -28,7 +28,7 @@ public class Main {
 
             Logging.log(Logging.DEBUG, "Words repeated over 7 times in " + article.getName() + ": " + wordsRepeatedOverFiveTimes.stream().map(word -> word.contents).toList());
 
-            Logging.log(Logging.DEBUG, "Sentiment rank for " + article.getName() + ": " + sentimentRank);
+            Logging.log(Logging.DEBUG, "Sentiment rank for " + article.getName() + ": " + String.format("%.2f", sentimentRank)); // rounds to 2 decimal places
 
         }
 
