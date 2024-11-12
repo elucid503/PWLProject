@@ -41,4 +41,10 @@ public class Logging {
 
     }
 
+    public static void newLine() {
+
+        System.out.println();
+
+    }
+
 }
