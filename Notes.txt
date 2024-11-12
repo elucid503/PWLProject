@@ -1,1 +1,0 @@
-https://blogs.oracle.com/javamagazine/post/java-sentiment-analysis-stanford-corenlp
