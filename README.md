@@ -139,5 +139,5 @@ This software application performs basic text analysis with the goal of comparin
 2. Execute the main program. It will automatically load the articles, remove stop words, and analyze word frequencies for comparison.
 
 ## Diagram
-![Diagram](https://raw.githubusercontent.com/elucid503/PWLProject/refs/heads/main/Docs/Milestone1/UMLDiagram.png)
+![Diagram](https://github.com/elucid503/PWLProject/blob/fbb0c52d563edcd74b86a76f7a1b46aa70919fc3/Docs/Milestone2/UMLDiagram.png)
 
