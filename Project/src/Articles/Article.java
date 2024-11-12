@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Article {
 
-    final String filePath;
+    public final String filePath;
 
     public String plainTextContents;
     public ArrayList<String> arrayListContents;

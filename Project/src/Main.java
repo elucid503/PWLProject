@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        Topic myTopic = new Topic("Starliner");
+        Topic myTopic = new Topic("StarshipCatch");
 
         myTopic.load();
 
@@ -15,7 +15,7 @@ public class Main {
 
             float sentimentRank = article.sentimentRanker.rank();
 
-            Logging.log(Logging.DEBUG, "Sentiment rank for " + article.getName() + ": " + sentimentRank);
+            Logging.log(Logging.DEBUG, "Sentiment rank for " + article.filePath + ": " + sentimentRank);
 
         }
 
