@@ -1,6 +1,6 @@
-## jQuery UI v1.13.2
+## jQuery CLI v1.13.2
 
-### jQuery UI License
+### jQuery CLI License
 ```
 Copyright jQuery Foundation and other contributors, https://jquery.org/
 

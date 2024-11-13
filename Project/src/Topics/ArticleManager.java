@@ -1,7 +1,7 @@
 package Topics;
 
 import Articles.Article;
-import Util.Misc.Logging;
+import CLI.Logging;
 import Util.Misc.Sorting;
 
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class ArticleManager {
 
             } catch (Exception e) {
 
-                Logging.log(Logging.ERROR, "Failed to read and process article: " + currentArticle.getName());
+                Logging.logInternal(Logging.ERROR, "Failed to read and process article: " + currentArticle.getName());
 
             }
 
