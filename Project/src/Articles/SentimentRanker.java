@@ -1,8 +1,7 @@
 package Articles;
 
 import Articles.Words.LexiconWord;
-import Util.Files.FileReader;
-import Util.Files.PathResolver;
+import Util.Files.Util;
 
 import java.util.ArrayList;
 
@@ -33,7 +32,7 @@ public class SentimentRanker {
 
     public void readLexiconWords() throws Exception {
 
-        FileReader reader = new FileReader(PathResolver.resolve("./ExternalFiles/Lexicon.txt"));
+        Reader reader = new Reader(Util.resolvePath("./ExternalFiles/Lexicon.txt"));
 
         this.rawLexiconWords = reader.readAsStringList(false);
 

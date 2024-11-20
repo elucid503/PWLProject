@@ -1,7 +1,7 @@
 package Topics;
 
 import Articles.Article;
-import Util.Files.DirReader;
+import Util.Files.Directories;
 
 import java.util.ArrayList;
 
@@ -37,7 +37,7 @@ public class Topic {
 
     public void load() throws Exception {
 
-        ArrayList<String> articleFileList = DirReader.read(this.dirPath);
+        ArrayList<String> articleFileList = Directories.read(this.dirPath);
 
         for (String articleFile : articleFileList) {
 

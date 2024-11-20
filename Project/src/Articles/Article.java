@@ -1,7 +1,7 @@
 package Articles;
 
 import Articles.Words.ArticleWord;
-import Util.Files.FileReader;
+import Util.Files.Files;
 
 import java.util.ArrayList;
 
@@ -70,8 +70,8 @@ public class Article {
 
         }
 
-        this.plainTextContents = new FileReader(this.filePath).readAsString();
-        this.arrayListContents = new FileReader(this.filePath).readAsStringList(true); // Gets individual words
+        this.plainTextContents = Files.readAsString(this.filePath); // Gets the entire text
+        this.arrayListContents = Files.readAsStringList(this.filePath, true); // Gets the text as an array list
 
         if (lower) {
 

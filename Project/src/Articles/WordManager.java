@@ -1,7 +1,6 @@
 package Articles;
 
 import Articles.Words.ArticleWord;
-import Util.Files.FileReader;
 import Util.Misc.Sorting;
 
 import java.util.ArrayList;
@@ -119,7 +118,7 @@ public class WordManager {
 
         }
 
-        FileReader fileReader = new FileReader(this.stopWordPath);
+        Reader fileReader = new Reader(this.stopWordPath);
 
         this.stopWords = fileReader.readAsStringList(true); // Gets individual words
 
