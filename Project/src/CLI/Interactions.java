@@ -30,7 +30,6 @@ public class Interactions {
 
         Logging.logUI("Welcome to the Sentiment Analysis Tool", new String[]{Logging.BOLD,Logging.CYAN});
 
-        Logging.lineBreak();
         Logging.horizontalLine();
 
         Logging.logUI("1. Create a Topic", new String[]{Logging.ITALIC});
