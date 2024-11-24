@@ -1,5 +1,10 @@
 package CLI;
 
+import Topics.Topic;
+import Util.Files.Directories;
+import Util.Files.Files;
+import Util.Scraping.ArticleScraper;
+
 import java.util.Scanner;
 
 /**
@@ -50,8 +55,6 @@ public class Interactions {
 
     }
 
-    // NEXT UP: Custom message as arg; make do stuff
-
     public static void getAndHandleInput(Scanner inputScanner) {
 
         String input = inputScanner.nextLine();
@@ -60,39 +63,204 @@ public class Interactions {
 
     }
 
+    public static String getStringInputFromUser(Scanner inputScanner, String prompt) {
+
+        Logging.logUI(prompt, new String[]{Logging.BOLD, Logging.CYAN});
+        return inputScanner.nextLine();
+
+    }
+
     public static void handleInput(String input, Scanner referencedScanner) {
 
         switch (input) {
 
-            case "1":
-                // Create a Topic
-                Logging.logUI("Creating a Topic", new String[]{Logging.BOLD, Logging.CYAN});
-                break;
+            case "1": {
 
-            case "2":
-                // Select a Topic
-                Logging.logUI("Selecting a Topic", new String[]{Logging.BOLD, Logging.CYAN});
-                break;
+                // Prompt the user for the topic name
 
-            case "3":
-                // Add an Article
-                Logging.logUI("Adding an Article", new String[]{Logging.BOLD, Logging.CYAN});
-                break;
+                String topicName = Interactions.getStringInputFromUser(referencedScanner, "Enter a name for the topic: ");
 
-            case "4":
-                // Remove an Article
-                Logging.logUI("Removing an Article", new String[]{Logging.BOLD, Logging.CYAN});
-                break;
+                // Create the topic folder
 
-            case "5":
+                try {
+
+                    Directories.create("./ExternalFiles/Topics/" + topicName);
+
+                } catch (Exception e) {
+
+                    Logging.logUI("An error occurred while creating the topic folder", new String[]{Logging.BOLD, Logging.RED});
+                    break;
+
+                }
+
+                Logging.logUI("Topic created successfully. You now may add articles to this topic by selecting it within the \"Add an Article\" option and then providing a URL or file path.", new String[]{Logging.BOLD, Logging.GREEN});
+
+            } break;
+
+            case "2": {
+
+                // Select a topic and run analysis
+
+                String topicName = Interactions.getStringInputFromUser(referencedScanner, "Enter the name of the topic you would like to analyze: ");
+
+                // Check if the topic exists by creating it
+
+                Topic foundTopic = new Topic(topicName);
+
+                try {
+
+                    foundTopic.load();
+
+                } catch (Exception e) {
+
+                    Logging.logUI("The topic does not exist", new String[]{Logging.BOLD, Logging.RED});
+                    break;
+
+                }
+
+                // Run the analysis
+
+                Logging.logUI("Running analysis on the topic", new String[]{Logging.BOLD, Logging.CYAN});
+
+                // TODO: Actually do this
+
+            } break;
+
+            case "3": {
+
+                // TODO: Maybe make this consolidated since it is similar to the code in case 2
+
+                String topicNameToAdd = Interactions.getStringInputFromUser(referencedScanner, "Enter the name of the topic you would like to add an article to: ");
+
+                // Check if the topic exists by creating it
+
+                Topic foundTopic = new Topic(topicNameToAdd);
+
+                try {
+
+                    foundTopic.load();
+
+                } catch (Exception e) {
+
+                    Logging.logUI("The topic does not exist. Create it using the \"Create a Topic\" option.", new String[]{Logging.BOLD, Logging.RED});
+                    break;
+
+                }
+
+                // Actually new stuff
+
+                String topicFilePathOrURL = Interactions.getStringInputFromUser(referencedScanner, "Enter the file path or URL of the article: ");
+
+                // Check if URL or path
+
+                if (topicFilePathOrURL.contains("http")) {
+
+                    // Download the article
+
+                    Logging.logUI("Downloading the article...", new String[]{Logging.BOLD, Logging.CYAN});
+
+                    try {
+
+                        String articleScrapedText = ArticleScraper.text(topicFilePathOrURL);
+
+                        if (articleScrapedText.isEmpty()) {
+
+                            Logging.logUI("Couldn't get the article contents. The URL you entered may be invalid.", new String[]{Logging.BOLD, Logging.RED});
+                            break;
+
+                        }
+
+                        Files.write("./ExternalFiles/Topics/" + topicNameToAdd + "/article.txt", articleScrapedText);
+
+                        Logging.logUI("Article downloaded and added successfully!", new String[]{Logging.BOLD, Logging.GREEN});
+
+                    } catch(Exception e) {
+
+                        Logging.logUI("The URL you entered may be invalid.", new String[]{Logging.BOLD, Logging.RED});
+                        break;
+
+                    }
+
+
+                } else {
+
+                    // Try moving, handling errors
+
+                    try {
+
+                        Files.move(topicFilePathOrURL, "./ExternalFiles/Topics/" + topicNameToAdd);
+
+                    } catch(Exception e) {
+
+                        Logging.logUI("The path you entered may be invalid.", new String[]{Logging.BOLD, Logging.RED});
+                        break;
+
+                    }
+
+                    Logging.logUI("Article added successfully!", new String[]{Logging.BOLD, Logging.GREEN});
+
+                }
+
+
+
+
+            } break;
+
+            case "4": {
+
+                // TODO: As above, consolidate this with the code in case 2 / 3
+
+                // Remove an article
+
+                String topicNameToRemove = Interactions.getStringInputFromUser(referencedScanner, "Enter the name of the topic you would like to remove an article from: ");
+
+                // Check if the topic exists by creating it
+
+                Topic foundTopic = new Topic(topicNameToRemove);
+
+                try {
+
+                    foundTopic.load();
+
+                } catch (Exception e) {
+
+                    Logging.logUI("The topic does not exist", new String[]{Logging.BOLD, Logging.RED});
+                    break;
+
+                }
+
+                String articleToRemove = Interactions.getStringInputFromUser(referencedScanner, "Enter the name of the article you would like to remove: ");
+
+                try {
+
+                    Files.delete("./ExternalFiles/Topics/" + topicNameToRemove + "/" + articleToRemove);
+
+                    Logging.logUI("Article removed successfully!", new String[]{Logging.BOLD, Logging.GREEN});
+
+                } catch(Exception e) {
+
+                    Logging.logUI("The article you entered may not exist.", new String[]{Logging.BOLD, Logging.RED});
+                    break;
+
+                }
+
+
+            } break;
+
+            case "5": {
+
                 // Exit
+
                 Logging.logUI("Exiting", new String[]{Logging.BOLD, Logging.RED});
                 System.exit(0);
-                break;
 
-            default:
+            } break;
+
+            default: {
+
                 Logging.logUI("Invalid input", new String[]{Logging.BOLD, Logging.RED});
-                break;
+
+            } break;
 
         }
 

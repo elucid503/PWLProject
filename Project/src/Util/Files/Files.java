@@ -133,4 +133,32 @@ public class Files {
 
     }
 
+    /**
+     * Deletes a file
+     * @param path - The path of the file to delete
+     * @throws Exception - If the file cannot be deleted
+     */
+
+    static public void delete(String path) throws Exception {
+
+        // resolve the path
+
+        String resolvedPath = Util.resolvePath(path);
+
+        // delete the file
+
+        try {
+
+            // To use this "delete" method, we must wrap the string path representations in Paths.get (for some reason)
+
+            java.nio.file.Files.delete(java.nio.file.Paths.get(resolvedPath));
+
+        } catch (Exception e) {
+
+            throw new Exception("Error deleting file " + e.getMessage());
+
+        }
+
+    }
+
 }
