@@ -28,6 +28,8 @@ public class Directories {
 
             java.nio.file.Files.createDirectories(java.nio.file.Paths.get(resolvedPath));
 
+            System.out.println("Directory created successfully");
+
         } catch (Exception e) {
 
             throw new Exception("Error creating directory: " + e.getMessage());

@@ -93,6 +93,30 @@ public class Logging {
 
     }
 
+    public static void logUI(String message, String[] styles, boolean noNewLine) {
+
+        lastMessageLength = message.length();
+
+        StringBuilder styleString = new StringBuilder();
+
+        for (String style : styles) {
+
+            styleString.append(style);
+
+        }
+
+        if (noNewLine) {
+
+            System.out.print(styleString + message + RESET);
+
+        } else {
+
+            System.out.println(styleString + message + RESET);
+
+        }
+
+    }
+
     /**
      * This method creates a line break in the console
      **/

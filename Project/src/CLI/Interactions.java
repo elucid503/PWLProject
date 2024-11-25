@@ -33,7 +33,7 @@ public class Interactions {
 
         // Handle input recursively
 
-        Interactions.getAndHandleInput(inputScanner);
+        Interactions.getAndHandleInputForWelcomeMsg(inputScanner);
 
     }
 
@@ -53,9 +53,13 @@ public class Interactions {
         Logging.smartHorizontalLine();
         Logging.logUI("5. Exit", new String[]{Logging.BOLD,Logging.RED});
 
+        Logging.lineBreak();
+
     }
 
-    public static void getAndHandleInput(Scanner inputScanner) {
+    public static void getAndHandleInputForWelcomeMsg(Scanner inputScanner) {
+
+        Logging.logUI("Please select an option: ", new String[]{Logging.BOLD, Logging.BLUE}, true);
 
         String input = inputScanner.nextLine();
 
@@ -65,7 +69,7 @@ public class Interactions {
 
     public static String getStringInputFromUser(Scanner inputScanner, String prompt) {
 
-        Logging.logUI(prompt, new String[]{Logging.BOLD, Logging.CYAN});
+        Logging.logUI(prompt + ": ", new String[]{Logging.BOLD, Logging.CYAN}, true);
         return inputScanner.nextLine();
 
     }
@@ -78,13 +82,13 @@ public class Interactions {
 
                 // Prompt the user for the topic name
 
-                String topicName = Interactions.getStringInputFromUser(referencedScanner, "Enter a name for the topic: ");
+                String topicName = Interactions.getStringInputFromUser(referencedScanner, "Enter a name for the topic");
 
                 // Create the topic folder
 
                 try {
 
-                    Directories.create("./ExternalFiles/Topics/" + topicName);
+                    Directories.create("./ExternalFiles/" + topicName);
 
                 } catch (Exception e) {
 
@@ -101,7 +105,7 @@ public class Interactions {
 
                 // Select a topic and run analysis
 
-                String topicName = Interactions.getStringInputFromUser(referencedScanner, "Enter the name of the topic you would like to analyze: ");
+                String topicName = Interactions.getStringInputFromUser(referencedScanner, "Enter the name of the topic you would like to analyze");
 
                 // Check if the topic exists by creating it
 
@@ -130,7 +134,7 @@ public class Interactions {
 
                 // TODO: Maybe make this consolidated since it is similar to the code in case 2
 
-                String topicNameToAdd = Interactions.getStringInputFromUser(referencedScanner, "Enter the name of the topic you would like to add an article to: ");
+                String topicNameToAdd = Interactions.getStringInputFromUser(referencedScanner, "Enter the name of the topic you would like to add an article to");
 
                 // Check if the topic exists by creating it
 
@@ -149,7 +153,7 @@ public class Interactions {
 
                 // Actually new stuff
 
-                String topicFilePathOrURL = Interactions.getStringInputFromUser(referencedScanner, "Enter the file path or URL of the article: ");
+                String topicFilePathOrURL = Interactions.getStringInputFromUser(referencedScanner, "Enter the file path or URL of the article");
 
                 // Check if URL or path
 
@@ -170,7 +174,7 @@ public class Interactions {
 
                         }
 
-                        Files.write("./ExternalFiles/Topics/" + topicNameToAdd + "/article.txt", articleScrapedText);
+                        Files.write("./ExternalFiles/" + topicNameToAdd + "/article.txt", articleScrapedText);
 
                         Logging.logUI("Article downloaded and added successfully!", new String[]{Logging.BOLD, Logging.GREEN});
 
@@ -188,7 +192,7 @@ public class Interactions {
 
                     try {
 
-                        Files.move(topicFilePathOrURL, "./ExternalFiles/Topics/" + topicNameToAdd);
+                        Files.move(topicFilePathOrURL, "./ExternalFiles/" + topicNameToAdd);
 
                     } catch(Exception e) {
 
@@ -212,7 +216,7 @@ public class Interactions {
 
                 // Remove an article
 
-                String topicNameToRemove = Interactions.getStringInputFromUser(referencedScanner, "Enter the name of the topic you would like to remove an article from: ");
+                String topicNameToRemove = Interactions.getStringInputFromUser(referencedScanner, "Enter the name of the topic you would like to remove an article from");
 
                 // Check if the topic exists by creating it
 
@@ -229,11 +233,11 @@ public class Interactions {
 
                 }
 
-                String articleToRemove = Interactions.getStringInputFromUser(referencedScanner, "Enter the name of the article you would like to remove: ");
+                String articleToRemove = Interactions.getStringInputFromUser(referencedScanner, "Enter the name of the article you would like to remove");
 
                 try {
 
-                    Files.delete("./ExternalFiles/Topics/" + topicNameToRemove + "/" + articleToRemove);
+                    Files.delete("./ExternalFiles/" + topicNameToRemove + "/" + articleToRemove);
 
                     Logging.logUI("Article removed successfully!", new String[]{Logging.BOLD, Logging.GREEN});
 
@@ -264,7 +268,18 @@ public class Interactions {
 
         }
 
-        Interactions.getAndHandleInput(referencedScanner);
+        try {
+
+            Thread.sleep(1000);
+
+        } catch (InterruptedException _) {
+
+        }
+
+        // Re-print the welcome message and listen for input
+
+        Interactions.printWelcomeMessage();
+        Interactions.getAndHandleInputForWelcomeMsg(referencedScanner);
 
     }
 
