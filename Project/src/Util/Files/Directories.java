@@ -86,17 +86,13 @@ public class Directories {
 
         ArrayList<String> fileNames = new ArrayList<>();
 
-        try {
-
-            DirectoryStream<Path> stream = java.nio.file.Files.newDirectoryStream(java.nio.file.Paths.get(path));
+        try (DirectoryStream<Path> stream = java.nio.file.Files.newDirectoryStream(java.nio.file.Paths.get(path))) {
 
             for (java.nio.file.Path entry : stream) {
 
                 fileNames.add(entry.getFileName().toString());
 
             }
-
-            stream.close();
 
         } catch (Exception e) {
 

@@ -37,6 +37,8 @@ public class Topic {
 
     public void load() throws Exception {
 
+        this.articleList.clear(); // Ensure that the article list is empty before loading the articles
+
         ArrayList<String> articleFileList = Directories.read(this.dirPath);
 
         for (String articleFile : articleFileList) {
@@ -46,6 +48,16 @@ public class Topic {
             article.read(true);
 
             this.articleList.add(article);
+
+        }
+
+    }
+
+    public void process() throws Exception {
+
+        for (Article article : this.articleList) {
+
+            article.process();
 
         }
 

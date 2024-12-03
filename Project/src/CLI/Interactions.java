@@ -1,11 +1,28 @@
 package CLI;
 
+import Articles.Article;
 import Topics.Topic;
 import Util.Files.Directories;
 import Util.Files.Files;
+import Util.Misc.Sorting;
 import Util.Scraping.ArticleScraper;
 
-import java.util.*;
+import java.util.*; // As to import certain things (Scanner, ArrayList, etc.) from the java.util package since they are used a lot here
+
+/**
+ * ArticleWithScore is a class that represents an article with a score. This is used in the sentiment analysis to store the article and its score for display and sorting.
+ * */
+class ArticleWithScore {
+
+    Article article;
+    float score;
+
+    ArticleWithScore(Article article, float score) {
+        this.article = article;
+        this.score = score;
+    }
+
+}
 
 /**
  * Interactions handles all user interaction with the program.
@@ -249,9 +266,64 @@ public class Interactions {
 
     }
 
-    private static void runSentimentAnalysis(Scanner scanner, Topic topic) {
+    private static void runSentimentAnalysis(Scanner scanner, Topic topic) throws Exception {
 
-        // TODO: Implement
+        topic.load(); // Reload in case articles have been added or removed
+        topic.process(); // Make sure the articles article processed
+
+        ArrayList<ArticleWithScore> articleWithScoreAdded = new ArrayList<>();
+
+        // Individual Article Analysis
+
+        for (Article article : topic.articleList) {
+
+            articleWithScoreAdded.add(new ArticleWithScore(article, article.sentimentRanker.rank()));
+
+        }
+
+        ArrayList<ArticleWithScore> articlesWithAscendingScore = Sorting.sortByObjectPropertyCount(articleWithScoreAdded, "score");
+
+        // Print Top & Individual Analysis
+
+        Article richestVocab = topic.articleManager.getArticleWithRichestVocab();
+
+        Article mostPositiveArticle = articlesWithAscendingScore.getFirst().article;
+        Article leastPositiveArticle = articlesWithAscendingScore.getLast().article;
+
+        Logging.lineBreak();
+
+        Logging.logUI("Article with Richest Vocabulary: " + richestVocab.getName(), new String[]{Logging.BOLD, Logging.CYAN});
+
+        Logging.logUI("Most Positive Article: " +  mostPositiveArticle.getName(), new String[]{Logging.BOLD, Logging.GREEN});
+        Logging.logUI("Least Positive Article: " + leastPositiveArticle.getName(), new String[]{Logging.BOLD, Logging.PURPLE});
+
+        Logging.lineBreak();
+
+        for (ArticleWithScore articleWithScore : articlesWithAscendingScore) {
+
+            List<String> mostCommonWords = articleWithScore.article.wordManager.getMostUsedUniqueWords(15).stream().map(word -> word.contents).toList(); // Can be a default list here, doesn't really matter
+
+            Logging.logUI("Article: " + articleWithScore.article.getName() + " | Score: " + String.format("%.2f", articleWithScore.score), new String[]{Logging.BOLD, Logging.CYAN}); // String.format can round the score to 2 decimal places using the %.2f format
+
+            if (!mostCommonWords.isEmpty()) {
+
+                Logging.logUI("Words repeated over 15 times: " + mostCommonWords, new String[]{Logging.BOLD, Logging.YELLOW});
+
+                Logging.smartHorizontalLine();
+
+            } else {
+
+                Logging.smartHorizontalLine(); // Will still use the log length of the log before the if statement (see the class)
+
+            }
+
+        }
+
+        Logging.lineBreak();
+
+        Logging.logUI("Sentiment Analysis Complete!", new String[]{Logging.BOLD, Logging.GREEN});
+
+        Thread.sleep(2_500); // Sleep for 2.5s for (better) UX
 
     }
 
@@ -284,7 +356,7 @@ public class Interactions {
 
             }
 
-            Files.write("./ExternalFiles/" + topicName + "/" + articleContent.get("title") + ".txt", articleContent.get("text"));
+            Files.write("./ExternalFiles/" + topicName + "/" + articleContent.get("domain") + ".txt", articleContent.get("text"));
 
             Logging.logUI("Article downloaded and added successfully!", new String[]{Logging.BOLD, Logging.GREEN});
 

@@ -15,35 +15,27 @@ public class Files {
 
     static public String readAsString(String path) throws Exception {
 
-        // read the file as a string
+        // This uses a try-with-resources block to automatically close the reader when it's done.
+        // Without this done, subsequent file system calls do not like us...
 
-        BufferedReader Reader = new BufferedReader(new java.io.FileReader(path));
+        try (BufferedReader reader = new BufferedReader(new java.io.FileReader(path))) {
 
-        StringBuilder FileContents = new StringBuilder();
-        String Line;
+            StringBuilder fileContents = new StringBuilder();
+            String line;
 
-        try {
+            while ((line = reader.readLine()) != null) {
 
-            while ((Line = Reader.readLine()) != null) {
-
-                FileContents.append(Line);
-                FileContents.append("\n");
+                fileContents.append(line).append("\n");
 
             }
 
+            return fileContents.toString();
+
         } catch (Exception e) {
 
-            // read exception
-
-            throw new Exception("Error reading file");
+            throw new Exception("Error reading file", e);
 
         }
-
-        // Close the reader (important as to avoid other file system issues)
-
-        Reader.close();
-
-        return FileContents.toString();
 
     }
 
@@ -56,31 +48,26 @@ public class Files {
 
     static public ArrayList<String> readAsStringList(String path, boolean individualWords) throws Exception {
 
-        // read the file as a string list
+        try (BufferedReader reader = new BufferedReader(new java.io.FileReader(path))) {
 
-        BufferedReader Reader = new BufferedReader(new java.io.FileReader(path));
+            ArrayList<String> fileContents = new ArrayList<>();
+            String line;
 
-        ArrayList<String> FileContents = new java.util.ArrayList<>();
+            while ((line = reader.readLine()) != null) {
 
-        String Line;
+                fileContents.add(line);
 
-        while ((Line = Reader.readLine()) != null) {
+            }
 
-            FileContents.add(Line);
+            if (individualWords) {
+
+                return Strings.convertSentencesToWords(fileContents);
+
+            }
+
+            return fileContents;
 
         }
-
-        if (individualWords) {
-
-            return Strings.convertSentencesToWords(FileContents);
-
-        }
-
-        // Close the reader
-
-        Reader.close();
-
-        return FileContents;
 
     }
 

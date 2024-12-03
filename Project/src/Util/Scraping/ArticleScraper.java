@@ -26,7 +26,7 @@ public class ArticleScraper {
 
         HashMap<String, String> detailsToReturn = new HashMap<>();
 
-        detailsToReturn.put("title", document.title());
+        detailsToReturn.put("domain", url.split("/")[2]);
         detailsToReturn.put("text", document.body().text());
 
         return detailsToReturn;
