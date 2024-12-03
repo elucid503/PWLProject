@@ -41,6 +41,40 @@ public class Directories {
     }
 
     /**
+     * Deletes a directory at the given path
+     *
+     * @param path - The path of the directory to be deleted
+     * @throws Exception - If the directory cannot be deleted
+     * @return true if the directory was deleted successfully
+     */
+
+    public static boolean delete(String path) throws Exception {
+
+        // resolve the path
+
+        String resolvedPath = Util.resolvePath(path);
+
+        // delete the directory
+
+        try {
+
+            // again, we must use path.get on the existing (string) path
+
+            java.nio.file.Files.delete(java.nio.file.Paths.get(resolvedPath));
+
+            System.out.println("Directory deleted successfully");
+
+        } catch (Exception e) {
+
+            throw new Exception("Error deleting directory: " + e.getMessage());
+
+        }
+
+        return true;
+
+    }
+
+    /**
      * Reads the directory and lists all file names
      * @return An ArrayList of file names
      * @throws Exception - If the directory cannot be read or if the directory does not exist
@@ -52,13 +86,17 @@ public class Directories {
 
         ArrayList<String> fileNames = new ArrayList<>();
 
-        try (DirectoryStream<Path> stream = java.nio.file.Files.newDirectoryStream(java.nio.file.Paths.get(path))) {
+        try {
+
+            DirectoryStream<Path> stream = java.nio.file.Files.newDirectoryStream(java.nio.file.Paths.get(path));
 
             for (java.nio.file.Path entry : stream) {
 
                 fileNames.add(entry.getFileName().toString());
 
             }
+
+            stream.close();
 
         } catch (Exception e) {
 
@@ -70,6 +108,40 @@ public class Directories {
 
     }
 
+    /**
+     * Lists child directories of the given directory
+     *
+     * @param source - The path of the directory to be read for child directories
+     * @throws Exception - If the directory cannot be read or if the directory does not exist
+     * @return An ArrayList of child directories names
+     */
 
+    public static ArrayList<String> listChildDirectories(String source) throws Exception {
+
+        // list child directories of the given directory
+
+        ArrayList<String> directories = new ArrayList<>();
+
+        try (DirectoryStream<Path> stream = java.nio.file.Files.newDirectoryStream(java.nio.file.Paths.get(source))) {
+
+            for (java.nio.file.Path entry : stream) {
+
+                if (java.nio.file.Files.isDirectory(entry)) {
+
+                    directories.add(entry.getFileName().toString());
+
+                }
+
+            }
+
+        } catch (Exception e) {
+
+            throw new Exception("Error listing directories: " + e.getMessage());
+
+        }
+
+        return directories;
+
+    }
 
 }

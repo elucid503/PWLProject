@@ -39,6 +39,10 @@ public class Files {
 
         }
 
+        // Close the reader (important as to avoid other file system issues)
+
+        Reader.close();
+
         return FileContents.toString();
 
     }
@@ -71,6 +75,10 @@ public class Files {
             return Strings.convertSentencesToWords(FileContents);
 
         }
+
+        // Close the reader
+
+        Reader.close();
 
         return FileContents;
 

@@ -4,6 +4,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * This class is responsible for downloading the text content of an article from a URL
@@ -19,12 +20,17 @@ public class ArticleScraper {
      * @throws IOException - If the URL is invalid or if the article cannot be downloaded
      * */
 
-    public static String text(String url) throws IOException {
+    public static HashMap<String, String> detailsAndText(String url) throws IOException {
 
         Document document = Jsoup.connect(url).get();
 
-        return document.body().text();
-        
+        HashMap<String, String> detailsToReturn = new HashMap<>();
+
+        detailsToReturn.put("title", document.title());
+        detailsToReturn.put("text", document.body().text());
+
+        return detailsToReturn;
+
     }
 
 }
