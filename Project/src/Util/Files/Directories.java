@@ -28,8 +28,6 @@ public class Directories {
 
             java.nio.file.Files.createDirectories(java.nio.file.Paths.get(resolvedPath));
 
-            System.out.println("Directory created successfully");
-
         } catch (Exception e) {
 
             throw new Exception("Error creating directory: " + e.getMessage());
@@ -61,8 +59,6 @@ public class Directories {
             // again, we must use path.get on the existing (string) path
 
             java.nio.file.Files.delete(java.nio.file.Paths.get(resolvedPath));
-
-            System.out.println("Directory deleted successfully");
 
         } catch (Exception e) {
 

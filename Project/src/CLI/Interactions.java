@@ -56,12 +56,16 @@ public class Interactions {
 
     private static void printWelcomeMessage() {
 
-        Logging.logUI("Welcome to the Sentiment Analysis Tool", new String[]{Logging.BOLD});
-        Logging.horizontalLine();
+        Logging.lineBreak();
+
+        Logging.logUI("Welcome to the Sentiment Analysis Tool", new String[]{Logging.BOLD, Logging.CYAN});
+        Logging.smartHorizontalLine();
+
+        Logging.lineBreak();
 
         printOptions(new String[] {
                 "1. Create a Topic",
-                "2. List and Manage Topics",
+                "2. Manage All Topics",
                 "3. Exit The Application"
         }, true);
 
@@ -82,7 +86,7 @@ public class Interactions {
 
     private static String getStringInput(Scanner scanner, String prompt) {
 
-        Logging.logUI(prompt + ": ", new String[]{Logging.BOLD, Logging.CYAN}, true);
+        Logging.logUI(prompt + ": ", new String[]{Logging.BOLD, Logging.BLUE}, true);
         return scanner.nextLine();
 
     }
@@ -116,8 +120,11 @@ public class Interactions {
 
             }
 
+            Logging.lineBreak();
+
             Collections.sort(topics); // Sorts them alphabetically
-            Logging.logUI("Available Topics:", new String[]{Logging.BOLD, Logging.CYAN});
+            Logging.logUI("Available Topics", new String[]{Logging.BOLD, Logging.CYAN});
+            Logging.smartHorizontalLine();
 
             for (int i = 0; i < topics.size(); i++) { // not using an enhanced for loop b/c we can use the index
 
@@ -185,10 +192,9 @@ public class Interactions {
 
         while (true) {
 
-            Logging.horizontalLine();
-            Logging.logUI("Managing Topic: " + topicName, new String[]{Logging.BOLD, Logging.CYAN});
-
             List<String> articles = Directories.read("./ExternalFiles/" + topicName);
+
+            Logging.lineBreak();
 
             if (articles.isEmpty()) {
 
@@ -196,11 +202,14 @@ public class Interactions {
 
             } else {
 
-                Logging.logUI("Articles:", new String[]{Logging.BOLD, Logging.GREEN});
+                Logging.logUI("Articles in " + "\"" + topicName + "\"", new String[]{Logging.BOLD, Logging.CYAN});
+
+                Logging.smartHorizontalLine();
 
                 for (int i = 0; i < articles.size(); i++) {
 
-                    Logging.logUI((i + 1) + ". " + articles.get(i), new String[]{Logging.ITALIC});
+                    Logging.logUI((i + 1) + ". " + articles.get(i), new String[]{});
+
                 }
 
             }
@@ -211,8 +220,10 @@ public class Interactions {
                     "1. Add an Article",
                     "2. Remove an Article",
                     "3. Run Sentiment Analysis",
-                    "4. Delete Topic"
+                    "4. Delete Topic and Articles"
             }, false);
+
+            Logging.lineBreak();
 
             String action = getStringInput(scanner, "Enter an action number or type 'back' to return to the topics list");
 
@@ -292,8 +303,12 @@ public class Interactions {
 
         Logging.lineBreak();
 
-        Logging.logUI("Article with Richest Vocabulary: " + richestVocab.getName(), new String[]{Logging.BOLD, Logging.CYAN});
+        Logging.logUI("Sentiment Analysis For " + topic.topicName, new String[]{Logging.BOLD, Logging.CYAN});
+        Logging.smartHorizontalLine();
 
+        Logging.lineBreak();
+
+        Logging.logUI("Article with Richest Vocabulary: " + richestVocab.getName(), new String[]{Logging.BOLD, Logging.GREEN});
         Logging.logUI("Most Positive Article: " +  mostPositiveArticle.getName(), new String[]{Logging.BOLD, Logging.GREEN});
         Logging.logUI("Least Positive Article: " + leastPositiveArticle.getName(), new String[]{Logging.BOLD, Logging.PURPLE});
 
@@ -303,7 +318,12 @@ public class Interactions {
 
             List<String> mostCommonWords = articleWithScore.article.wordManager.getMostUsedUniqueWords(15).stream().map(word -> word.contents).toList(); // Can be a default list here, doesn't really matter
 
-            Logging.logUI("Article: " + articleWithScore.article.getName() + " | Score: " + String.format("%.2f", articleWithScore.score), new String[]{Logging.BOLD, Logging.CYAN}); // String.format can round the score to 2 decimal places using the %.2f format
+            // Some colour customization for fun
+
+            String articleSpecificColour = articleWithScore.score > 0 ? Logging.GREEN : Logging.YELLOW;
+            articleSpecificColour = articleWithScore.score < -10 ? Logging.RED : articleSpecificColour;
+
+            Logging.logUI("Article: " + articleWithScore.article.getName() + " | Score: " + String.format("%.2f", articleWithScore.score), new String[]{Logging.BOLD, articleSpecificColour}); // String.format can round the score to 2 decimal places using the %.2f format
 
             if (!mostCommonWords.isEmpty()) {
 
@@ -321,7 +341,7 @@ public class Interactions {
 
         Logging.lineBreak();
 
-        Logging.logUI("Sentiment Analysis Complete!", new String[]{Logging.BOLD, Logging.GREEN});
+        Logging.logUI("Sentiment Analysis Complete!", new String[]{Logging.BOLD});
 
         Thread.sleep(2_500); // Sleep for 2.5s for (better) UX
 
@@ -393,8 +413,6 @@ public class Interactions {
             Logging.logUI("Article removed successfully!", new String[]{Logging.BOLD, Logging.GREEN});
 
         } catch (Exception e) {
-
-            System.out.println(e);
 
             Logging.logUI("Failed to remove the article. It may not exist.", new String[]{Logging.BOLD, Logging.RED});
 
