@@ -233,7 +233,7 @@ public class Interactions {
 
                 case "1": addArticle(scanner, topicName); break;
                 case "2": removeArticle(scanner, topicName); break;
-                case "3": runSentimentAnalysis(scanner, topic); break;
+                case "3": runSentimentAnalysis(topic); break;
                 case "4": removeTopic(topicName); return;
                 default: Logging.logUI("Invalid input", new String[]{Logging.BOLD, Logging.RED});
 
@@ -277,7 +277,7 @@ public class Interactions {
 
     }
 
-    private static void runSentimentAnalysis(Scanner scanner, Topic topic) throws Exception {
+    private static void runSentimentAnalysis(Topic topic) throws Exception {
 
         topic.load(); // Reload in case articles have been added or removed
         topic.process(); // Make sure the articles article processed
