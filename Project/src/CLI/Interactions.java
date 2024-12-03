@@ -292,7 +292,7 @@ public class Interactions {
 
         }
 
-        ArrayList<ArticleWithScore> articlesWithAscendingScore = Sorting.sortByObjectPropertyCount(articleWithScoreAdded, "score");
+        List<ArticleWithScore> articlesWithAscendingScore = Sorting.sortByObjectPropertyCount(articleWithScoreAdded, "score").reversed();
 
         // Print Top & Individual Analysis
 
