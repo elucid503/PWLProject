@@ -164,7 +164,7 @@ This software application performs advanced text analysis with the goal of compa
 1. **Input Articles**:
    - Use one of three methods:
      1. Input a URL via the CLI to scrape the article.
-     2. Input the absolute or relative path to a `.txt` file via the CLI.
+     2. Input the absolute path to a `.txt` file via the CLI.
      3. Manually place `.txt` files into `ExternalFiles/Topics`.
 
 2. **Compile and Execute**:
