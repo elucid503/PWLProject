@@ -298,8 +298,8 @@ public class Interactions {
 
         Article richestVocab = topic.articleManager.getArticleWithRichestVocab();
 
-        Article mostPositiveArticle = articlesWithAscendingScore.getFirst().article;
-        Article leastPositiveArticle = articlesWithAscendingScore.getLast().article;
+        Article mostPositiveArticle = articlesWithAscendingScore.getLast().article;
+        Article leastPositiveArticle = articlesWithAscendingScore.getFirst().article;
 
         Logging.lineBreak();
 
@@ -320,9 +320,9 @@ public class Interactions {
 
             // Some colour customization for fun
 
-            String articleSpecificColour = articleWithScore.score > 0 ? Logging.GREEN : Logging.YELLOW;
+            String articleSpecificColour = articleWithScore.score > 10 ? Logging.GREEN : Logging.YELLOW;
             articleSpecificColour = articleWithScore.score < -10 ? Logging.RED : articleSpecificColour;
-
+            
             Logging.logUI("Article: " + articleWithScore.article.getName() + " | Score: " + String.format("%.2f", articleWithScore.score), new String[]{Logging.BOLD, articleSpecificColour}); // String.format can round the score to 2 decimal places using the %.2f format
 
             if (!mostCommonWords.isEmpty()) {
