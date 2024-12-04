@@ -6,138 +6,148 @@
 - **Ronny Cuji** - ronny.cuji@student.fairfield.edu (GitHub: @ronnyc077)
 
 ## Project Statement
-This software application performs basic text analysis with the goal of comparing articles about the same topic/news. The application can read multiple articles on a specific topic, analyze their content for word frequency, unique vocabulary, and sentiment.
+This software application performs advanced text analysis with the goal of comparing articles about the same topic/news. The application can read multiple articles on a specific topic, analyze their content for word frequency, unique vocabulary, and sentiment.
 
 ## Features
-- Input articles that share the same topic.
+- Input articles that share the same topic. There are three ways to do this:
+  1. Provide a URL to an article of your choosing.
+  2. Provide the absolute path to a `.txt` file containing the article.
+  3. Manually place your articles into respective topic folders inside the `ExternalFiles/Topics` directory.
 - Remove stop words and punctuation for cleaner analysis.
 - Calculate unique word counts and total word counts.
 - Sort and display words by frequency of occurrence.
 - Calculate sentiment ranking based on a predefined lexicon.
 - Log actions with severity levels to assist debugging and analysis.
+- Scrape articles directly from URLs.
 
 ## Overview of Classes
 
-### `Main`
+### **`Main`**
 - **Purpose**: The main entry point for the application.
-- **Functionality**: Loads each article, processes its content, performs analysis, and logs the sentiment score.
+- **Functionality**: Launches the CLI for managing topics, articles, and sentiment analysis.
 
-### Util Folder
+---
 
-#### **Files Subfolder**:
-1. **`DirReader`**
-   - **Utility Class**: Reads a specified directory and lists all file names.
-   - **Fields:**
-     - `path`: Path to the directory to be read.
-   - **Methods:**
-     - `read(String path)`: Reads the directory and returns a list of file names.
-       - **Exceptions**: Throws `Exception` if the directory cannot be read or if it does not exist, with detailed error messages for directory access issues.
+### **CLI Package**
 
-2. **`FileReader`**
-   - **Utility Class**: Reads content from files, either as a whole string or as a list of individual words.
-   - **Fields:**
-     - `Path`: File path to the document.
-   - **Methods:**
-     - `readAsString()`: Reads the entire content of the file as a single string.
-       - **Exceptions**: Throws `Exception` if the file cannot be read, with a custom message detailing the file reading error.
-     - `readAsStringList(boolean individualWords)`: Reads file content and returns it as a list of strings, split either by line or into individual words if `individualWords` is `true`.
-       - **Exceptions**: Throws `Exception` if the file cannot be read. Provides a custom error message for readability issues.
+#### **`Interactions`**
+- **Purpose**: Handles user interaction through a command-line interface.
+- **Key Methods**:
+  - `startUI()`: Launches the user interface.
+  - `createTopic()`, `addArticle()`, `runSentimentAnalysis()`: Allow topic and article management, as well as sentiment analysis.
 
-3. **`PathResolver`**
-   - **Utility Class**: Resolves relative file paths into absolute paths, ensuring compatibility across different systems.
-   - **Fields:**
-     - `Path`: The relative path to resolve.
-   - **Methods:**
-     - `resolve(String path)`: Returns the absolute path based on the provided relative path. Uses system properties to ensure the path is compatible across different operating systems.
+#### **`Logging`**
+- **Purpose**: Logs user and system actions with severity levels and custom styles.
+- **Key Methods**:
+  - `logInternal(level, message)`: Logs system-level messages.
+  - `logUI(message, styles)`: Displays styled console messages for the user interface.
 
-#### **Misc Subfolder**:
-1. **`Sorting`**
-   - **Utility Class**: Sorts a list of objects based on a specified integer property.
-   - **Methods:**
-     - `sortByObjectPropertyCount(ArrayList<T> list, String prop)`: Sorts a list of objects by the specified integer field, such as `timesSeen`, in descending order.
-       - **Exceptions**: Handles `IllegalAccessException` and `NoSuchFieldException` to ensure compatibility if the specified property does not exist in the objects.
+---
 
-2. **`Logging`**
-   - **Utility Class**: Logs messages in a standardized format with severity levels (DEBUG, WARNING, ERROR).
-   - **Fields:**
-     - `DEBUG`, `WARNING`, `ERROR`: Constants representing logging levels.
-   - **Methods:**
-     - `log(int level, String message)`: Logs messages with timestamps and severity levels.
-       - **Exceptions**: Throws `IllegalArgumentException` if an invalid logging level is provided, detailing acceptable values.
-
-#### **Strings**:
-1. **`SentenceManager`**
-   - **Utility Class**: Manages text by splitting sentences into individual words for analysis.
-   - **Methods:**
-     - `convertSentencesToWords(ArrayList<String> sentences)`: Takes an `ArrayList` of sentences and splits them into individual words.
-
-### Articles Folder
+### **Articles Package**
 
 #### **`Article`**
-- **Purpose**: Represents an article with fields for raw and processed content, unique words, and sentiment analysis tools.
-- **Fields:**
-  - `filePath`: Path to the article file.
-  - `plainTextContents`: Raw content of the article.
-  - `arrayListContents`: Content split into individual words.
-  - `punctuationRemovedContents`, `stopWordRemovedContents`: Processed content versions.
-  - `uniqueWords`: List of unique words in the article.
-  - `wordManager`, `sentimentRanker`: Utility objects for word management and sentiment ranking.
-- **Methods:**
-  - `getName()`: Extracts and returns the article’s file name from its path. Splits the `filePath` by "/" and retrieves the last element.
-  - `read(boolean lower)`: Reads file content and, if `lower` is true, converts it to lowercase. Uses caching to avoid repeated reads.
-    - **Exceptions**: Throws `Exception` if the file cannot be read. Detailed error messages include the path and specific reading issues.
-  - `process()`: Processes article content by removing punctuation, stop words, and identifying unique words. Calls methods in `WordManager` to handle punctuation and stop words.
-    - **Exceptions**: Throws `Exception` if file reading or processing dependencies are missing.
+- **Purpose**: Represents an article and manages its content, including text processing and metadata.
+- **Key Methods**:
+  - `read(lower)`: Reads the article from a file, optionally converting content to lowercase.
+  - `process()`: Removes stop words and punctuation, and identifies unique words.
 
 #### **`SentimentRanker`**
-- **Purpose**: Calculates sentiment ranking for an article based on a lexicon of words with sentiment values.
-- **Fields:**
-  - `relatedArticle`: Reference to the article being analyzed.
-  - `rawLexiconWords`, `parsedLexiconWords`: Data required for sentiment analysis.
-  - `sentimentRank`: Calculated sentiment score for the article.
-- **Methods:**
-  - `readLexiconWords()`: Reads sentiment lexicon from a specified file, using `FileReader`.
-    - **Exceptions**: Throws `Exception` if the lexicon file cannot be read. Error handling includes detailed logging to assist with debugging file access issues.
-  - `parseLexiconWords()`: Converts raw lexicon words into structured objects for analysis, using the `LexiconWord` class. Each word is split and stored in `parsedLexiconWords`.
-  - `rank()`: Calculates sentiment score by comparing article words to lexicon entries. Matches words in `stopWordRemovedContents` with `LexiconWord` entries to calculate `sentimentRank`.
-    - **Exceptions**: Throws `Exception` if lexicon data is missing or unreadable.
+- **Purpose**: Calculates a sentiment score for an article based on a predefined lexicon.
+- **Key Methods**:
+  - `rank()`: Assigns a sentiment score by matching article words with lexicon entries.
 
 #### **`WordManager`**
-- **Purpose**: Manages text processing operations, including stop word removal, punctuation handling, and unique word tracking.
-- **Fields:**
-  - `stopWordPath`: Path to the stop words file.
-  - `stopWords`: List of stop words.
-  - `uniqueWordCount`: Count of unique words in the article.
-- **Methods:**
-  - `getWordCount()`: Calculates and returns the total word count in the article.
-  - `getUniqueWords()`: Identifies and lists unique words. Uses a hybrid approach of a `HashMap` and `ArticleWord` instances to track and cache unique words.
-  - `getMostUsedUniqueWords(int timesSeen)`: Returns words that appear at least `timesSeen` times. Uses `Sorting` utility to order by frequency.
-  - `removePunctuation(ArrayList<String> contents)`: Removes punctuation from the article content using regex, ensuring non-alphanumeric characters are removed. Updates `punctuationRemovedContents`.
-  - `removeStopWords(ArrayList<String> contentsToUse)`: Removes stop words from the article content using the loaded list from `StopWords.txt`.
-    - **Exceptions**: Throws `Exception` if the stop words file is missing or unreadable, logging errors to inform about file access issues.
+- **Purpose**: Handles word-level operations for articles.
+- **Key Methods**:
+  - `getUniqueWords()`: Extracts unique words from the article.
+  - `removeStopWords(contents)`: Filters out stop words.
+  - `removePunctuation(contents)`: Removes punctuation using regex.
 
-### Articles/Words Subfolder
+---
 
-1. **`ArticleWord`**
-   - Represents a single word within an article and tracks its frequency.
-   - **Fields:**
-     - `contents`: The word itself.
-     - `timesSeen`: An integer tracking how often the word appears in the article.
-   - **Methods:**
-     - `incrementTimesSeen()`: Increases the `timesSeen` count by 1.
+### **Articles.Words Package**
 
-2. **`LexiconWord`**
-   - Represents a word from the lexicon with a sentiment ranking.
-   - **Fields:**
-     - `contents`: The lexicon word.
-     - `ranking`: The sentiment score associated with the word.
-   - **Methods:**
-     - `split()`: Processes the word into its components, storing each component for easy access during sentiment analysis.
+#### **`ArticleWord`**
+- **Purpose**: Represents a word in an article and tracks its frequency.
+- **Key Methods**:
+  - `incrementTimesSeen()`: Increments the count of how often the word appears.
 
-## How to Run:
-1. Add your article text files into the respective `Topic` folders within the project directory.
-2. Execute the main program. It will automatically load the articles, remove stop words, and analyze word frequencies for comparison.
+#### **`LexiconWord`**
+- **Purpose**: Represents a word from the lexicon with a sentiment ranking.
+- **Key Methods**:
+  - `split()`: Splits the lexicon word into its components (word and ranking).
 
-## Diagram
-![Diagram](https://github.com/elucid503/PWLProject/blob/fbb0c52d563edcd74b86a76f7a1b46aa70919fc3/Docs/Milestone2/UMLDiagram.png)
+---
 
+### **Topics Package**
+
+#### **`Topic`**
+- **Purpose**: Represents a topic containing grouped articles.
+- **Key Methods**:
+  - `load()`: Loads articles from the topic's directory.
+  - `process()`: Processes all articles in the topic.
+
+#### **`ArticleManager`**
+- **Purpose**: Provides statistical analysis tools for articles within a topic.
+- **Key Methods**:
+  - `getArticleWithRichestVocab()`: Finds the article with the highest unique word count.
+
+---
+
+### **Util Package**
+
+#### **Files Subpackage**
+1. **`Directories`**
+   - **Purpose**: Manages directory operations.
+   - **Key Methods**:
+     - `create(path)`: Creates a directory.
+     - `delete(path)`: Deletes a directory.
+     - `read(path)`: Reads file names in a directory.
+     - `listChildDirectories(source)`: Lists child directories.
+
+2. **`Files`**
+   - **Purpose**: Handles file operations.
+   - **Key Methods**:
+     - `readAsString(path)`: Reads file content as a string.
+     - `readAsStringList(path, individualWords)`: Reads file content as a list of strings or words.
+     - `write(path, contents)`: Writes content to a file.
+     - `move(oldPath, newPath)`: Moves a file.
+     - `delete(path)`: Deletes a file.
+
+3. **`Util`**
+   - **Purpose**: Resolves relative paths into absolute paths for cross-platform compatibility.
+   - **Key Methods**:
+     - `resolvePath(path)`: Converts a relative path into an absolute path.
+
+#### **Strings**
+- **Purpose**: Provides text-processing utilities.
+- **Key Methods**:
+  - `convertSentencesToWords(sentences)`: Splits sentences into individual words.
+
+#### **Misc Subpackage**
+1. **`Sorting`**
+   - **Purpose**: Dynamically sorts objects by a specified property.
+   - **Key Methods**:
+     - `sortByObjectPropertyCount(list, prop)`: Sorts a list of objects in descending order by the given property.
+
+#### **Scraping Subpackage**
+1. **`ArticleScraper`**
+   - **Purpose**: Downloads article content from URLs using the JSoup library.
+   - **Key Methods**:
+     - `detailsAndText(url)`: Extracts the text and domain of an article from a URL.
+
+---
+
+## How to Run
+1. **Input Articles**:
+   - You can input articles in one of three ways:
+     1. Navigate to **Manage All Topics > Select a Topic > Add an Article**:
+        - Provide a URL to scrape the article content.
+        - Or input the absolute path to a `.txt` article file.
+     2. Manually place `.txt` article files into the respective topic folders inside the `ExternalFiles/Topics` directory.
+         
+2. **Compile and Execute**:
+   ```bash
+   javac Main.java
+   java Main
