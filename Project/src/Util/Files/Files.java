@@ -14,7 +14,7 @@ public class Files {
      * @throws Exception - If the file cannot be read
      */
 
-    static public String readAsString(String path) throws Exception {
+    public static String readAsString(String path) throws Exception {
 
         path = Paths.get(path).toString(); // Normalize the path
 
@@ -49,7 +49,7 @@ public class Files {
      * @throws Exception - If the file cannot be read
      */
 
-    static public ArrayList<String> readAsStringList(String path, boolean individualWords) throws Exception {
+    public static ArrayList<String> readAsStringList(String path, boolean individualWords) throws Exception {
 
         path = Paths.get(path).toString(); // Normalize the path
 
@@ -82,7 +82,7 @@ public class Files {
      * @throws Exception - If the file cannot be written
      */
 
-    static public void write(String path, String contents) throws Exception {
+    public static void write(String path, String contents) throws Exception {
 
         path = Paths.get(path).toString(); // Normalize the path
 
@@ -112,11 +112,28 @@ public class Files {
      * @throws Exception - If the file cannot be moved
      */
 
-    static public void moveFromAbsolutePathToRelative(String oldPath, String newPath) throws Exception {
+    public static void move(String oldPath, String newPath, boolean absolutePath) throws Exception {
 
         // This method was especially finicky with the path resolution. Docs on the java.nio.Paths class were helpful here.
 
-        oldPath = Paths.get(oldPath).normalize().toString(); // Normalize the path
+        if (absolutePath) {
+            
+            // Remove " from start and end if they copied from Windows explorer 
+
+            if (oldPath.startsWith("\"") && oldPath.endsWith("\"")) {
+
+                oldPath = oldPath.substring(1, oldPath.length() - 1); // Gets the content without the first and last character
+
+            }
+
+            oldPath = Paths.get(oldPath).normalize().toString(); // Normalize the path
+
+        } else {
+
+            oldPath = Util.resolvePath(oldPath); // Resolve the path
+
+        }
+        
         newPath = Util.resolvePath(newPath); // Resolve the path
 
         // move the file

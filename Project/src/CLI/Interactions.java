@@ -378,7 +378,7 @@ public class Interactions {
 
         try {
 
-            Files.moveFromAbsolutePathToRelative(filePath, "./ExternalFiles/Topics/" + topicName);
+            Files.move(filePath, "./ExternalFiles/Topics/" + topicName, true);
             Logging.logUI("Article added successfully!", new String[]{Logging.BOLD, Logging.GREEN});
 
         } catch (Exception e) {
@@ -387,7 +387,7 @@ public class Interactions {
 
             try {
 
-                Files.moveFromAbsolutePathToRelative(filePath, "./ExternalFiles/Topics/" + topicName); // Telling it relative
+                Files.move(filePath, "./ExternalFiles/Topics/" + topicName, false); // Telling it relative
 
             } catch (Exception e2) {
 
