@@ -278,12 +278,8 @@ public class Interactions {
 
         }
 
-        System.out.println(articleWithScoreAdded.stream().map(articleWithScore -> articleWithScore.score).toList());
-
         List<ArticleWithScore> articlesWithDescendingScore = Sorting.sortObjectByFloatProperyCount(articleWithScoreAdded, "score"); // We need to use the float version here
         
-        System.out.println(articlesWithDescendingScore.stream().map(articleWithScore -> articleWithScore.score).toList());
-
         // Print Top & Individual Analysis
 
         Article richestVocab = topic.articleManager.getArticleWithRichestVocab();

@@ -15,7 +15,9 @@ public class Files {
      */
 
     static public String readAsString(String path) throws Exception {
+
         path = Paths.get(path).toString(); // Normalize the path
+
         // This uses a try-with-resources block to automatically close the reader when it's done.
         // Without this done, subsequent file system calls do not like us...
 
@@ -48,7 +50,9 @@ public class Files {
      */
 
     static public ArrayList<String> readAsStringList(String path, boolean individualWords) throws Exception {
+
         path = Paths.get(path).toString(); // Normalize the path
+
         try (BufferedReader reader = new BufferedReader(new java.io.FileReader(path))) {
 
             ArrayList<String> fileContents = new ArrayList<>();
@@ -79,7 +83,9 @@ public class Files {
      */
 
     static public void write(String path, String contents) throws Exception {
+
         path = Paths.get(path).toString(); // Normalize the path
+
         // write the contents to a file
 
         try {
@@ -136,7 +142,9 @@ public class Files {
      */
 
     static public void delete(String path) throws Exception {
+
         path = Paths.get(path).toString(); // Normalize the path
+        
         // resolve the path
 
         String resolvedPath = Util.resolvePath(path);
