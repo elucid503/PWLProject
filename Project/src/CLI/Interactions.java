@@ -382,12 +382,23 @@ public class Interactions {
 
         try {
 
-            Files.move(filePath, "./ExternalFiles/Topics/" + topicName);
+            Files.move(filePath, "./ExternalFiles/Topics/" + topicName, true);
             Logging.logUI("Article added successfully!", new String[]{Logging.BOLD, Logging.GREEN});
 
         } catch (Exception e) {
 
-            Logging.logUI("Failed to add the article. The file path may be invalid.", new String[]{Logging.BOLD, Logging.RED});
+            // Try with relative (never nesters are sad)
+
+            try {
+
+                Files.move(filePath, "./ExternalFiles/Topics/" + topicName, false); // Telling it relative
+
+            } catch (Exception e2) {
+
+                Logging.logUI("Failed to add the article. The file path may be invalid.", new String[]{Logging.BOLD, Logging.RED});
+
+            }
+
         }
 
     }

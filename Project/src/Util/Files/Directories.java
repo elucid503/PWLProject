@@ -52,7 +52,20 @@ public class Directories {
 
         String resolvedPath = Util.resolvePath(path);
 
-        // delete the directory
+        // first, we must go through all the files since we can't implicitly remove non-empty dirs (-rf fixes this)
+
+        ArrayList<String> directoryFiles = Directories.read(resolvedPath);
+
+        directoryFiles.forEach((fileName) -> {
+
+            try {
+                Files.delete(path + "/" + fileName);
+            } catch (Exception e) {
+                throw new RuntimeException("Error deleting file: " + fileName);
+            }
+
+        });
+
 
         try {
 

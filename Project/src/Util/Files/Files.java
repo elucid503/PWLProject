@@ -105,11 +105,22 @@ public class Files {
      * @throws Exception - If the file cannot be moved
      */
 
-    static public void move(String oldPath, String newPath) throws Exception {
+    static public void move(String oldPath, String newPath, boolean isAbsolute) throws Exception {
 
         // resolve the paths
 
-        String resolvedOldPath = Util.resolvePath(oldPath);
+        String resolvedOldPath;
+
+        if (!isAbsolute) {
+
+            resolvedOldPath = Util.resolvePath(oldPath);
+
+        } else {
+
+            resolvedOldPath = oldPath; // Dont need to do anything
+
+        }
+
         String resolvedNewPath = Util.resolvePath(newPath);
 
         // move the file to a new location
@@ -118,9 +129,13 @@ public class Files {
 
             // To use this "move" method, we must wrap the string path representations in Paths.get (for some reason)
 
-            java.nio.file.Files.move(java.nio.file.Paths.get(resolvedOldPath), java.nio.file.Paths.get(resolvedNewPath));
+            String fileName = resolvedOldPath.split("/")[resolvedOldPath.split("/").length - 1];
+
+            java.nio.file.Files.move(java.nio.file.Paths.get(resolvedOldPath), java.nio.file.Paths.get(resolvedNewPath + "/" + fileName));
 
         } catch (Exception e) {
+
+            e.printStackTrace();
 
             throw new Exception("Error moving file " + e.getMessage());
 
