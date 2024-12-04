@@ -15,7 +15,7 @@ public class WordManager {
 
     Article article;
 
-    private final String stopWordPath = "./ExternalFiles/StopWords.txt";
+    private final String stopWordPath = "./ExternalFiles/Assets/StopWords.txt";
 
     public ArrayList<String> stopWords;
 

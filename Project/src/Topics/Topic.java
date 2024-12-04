@@ -24,7 +24,7 @@ public class Topic {
 
         this.topicName = topicName;
 
-        this.dirPath = "./ExternalFiles/" + topicName + "/";
+        this.dirPath = "./ExternalFiles/Topics/" + topicName + "/";
 
         this.articleManager = new ArticleManager(this);
 

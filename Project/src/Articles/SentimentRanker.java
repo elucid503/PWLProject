@@ -33,7 +33,7 @@ public class SentimentRanker {
 
     public void readLexiconWords() throws Exception {
 
-        this.rawLexiconWords = Files.readAsStringList(Util.resolvePath("./ExternalFiles/Lexicon.txt"), false);
+        this.rawLexiconWords = Files.readAsStringList(Util.resolvePath("./ExternalFiles/Assets/Lexicon.txt"), false);
 
     }
 

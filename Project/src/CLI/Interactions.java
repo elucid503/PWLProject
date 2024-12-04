@@ -111,7 +111,7 @@ public class Interactions {
 
         while (true) {
 
-            ArrayList<String> topics = Directories.listChildDirectories("./ExternalFiles");
+            ArrayList<String> topics = Directories.listChildDirectories("./ExternalFiles/Topics");
 
             if (topics.isEmpty()) {
 
@@ -192,7 +192,7 @@ public class Interactions {
 
         while (true) {
 
-            List<String> articles = Directories.read("./ExternalFiles/" + topicName);
+            List<String> articles = Directories.read("./ExternalFiles/Topics/" + topicName);
 
             Logging.lineBreak();
 
@@ -251,7 +251,7 @@ public class Interactions {
 
         try {
 
-            Directories.create("./ExternalFiles/" + topicName);
+            Directories.create("./ExternalFiles/Topics/" + topicName);
             Logging.logUI("Topic created successfully!", new String[]{Logging.BOLD, Logging.GREEN});
 
         } catch (Exception e) {
@@ -266,7 +266,7 @@ public class Interactions {
 
         try {
 
-            Directories.delete("./ExternalFiles/" + topicName);
+            Directories.delete("./ExternalFiles/Topics/" + topicName);
             Logging.logUI("Topic deleted successfully!", new String[]{Logging.BOLD, Logging.GREEN});
 
         } catch (Exception e) {
@@ -376,7 +376,7 @@ public class Interactions {
 
             }
 
-            Files.write("./ExternalFiles/" + topicName + "/" + articleContent.get("domain") + ".txt", articleContent.get("text"));
+            Files.write("./ExternalFiles/Topics/" + topicName + "/" + articleContent.get("domain") + ".txt", articleContent.get("text"));
 
             Logging.logUI("Article downloaded and added successfully!", new String[]{Logging.BOLD, Logging.GREEN});
 
@@ -392,7 +392,7 @@ public class Interactions {
 
         try {
 
-            Files.move(filePath, "./ExternalFiles/" + topicName);
+            Files.move(filePath, "./ExternalFiles/Topics/" + topicName);
             Logging.logUI("Article added successfully!", new String[]{Logging.BOLD, Logging.GREEN});
 
         } catch (Exception e) {
@@ -409,7 +409,7 @@ public class Interactions {
 
         try {
 
-            Files.delete("./ExternalFiles/" + topicName + "/" + articleName);
+            Files.delete("./ExternalFiles/Topics/" + topicName + "/" + articleName);
             Logging.logUI("Article removed successfully!", new String[]{Logging.BOLD, Logging.GREEN});
 
         } catch (Exception e) {
