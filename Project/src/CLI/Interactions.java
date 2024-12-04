@@ -220,7 +220,18 @@ public class Interactions {
                 case "1": addArticle(scanner, topicName); break;
                 case "2": removeArticle(scanner, topicName); break;
                 case "3": runSentimentAnalysis(topic); break;
-                case "4": removeTopic(scanner, topicName); return;
+                case "4": {
+
+                    boolean wasActuallyRemoved = removeTopic(scanner, topicName);
+
+                    // Handle the UI differently based on whether the topic was actually removed or not
+
+                    if (wasActuallyRemoved)
+                        return; // Exit the loop and go back to the topics list
+                    else 
+                        break; // Continue the loop
+
+                }
                 default: Logging.logUI("Invalid input", new String[]{Logging.BOLD, Logging.RED});
 
             }
@@ -238,21 +249,27 @@ public class Interactions {
         try {
 
             Directories.create("./ExternalFiles/Topics/" + topicName);
-            Logging.logUI("Topic created successfully!", new String[]{Logging.BOLD, Logging.GREEN});
+            Logging.logUI("Topic created successfully!", new String[] { Logging.BOLD, Logging.GREEN });
 
         } catch (Exception e) {
 
-            Logging.logUI("An error occurred while creating the topic folder.", new String[]{Logging.BOLD, Logging.RED});
+            Logging.logUI("An error occurred while creating the topic folder.",
+                    new String[] { Logging.BOLD, Logging.RED });
 
         }
 
     }
 
-    private static void removeTopic(Scanner scanner, String topicName) {
+    /*
+     * General UI Handler to remove a topic
+     * @return boolean - whether the topic was actually removed or not
+     */
+
+    private static boolean removeTopic(Scanner scanner, String topicName) {
 
         // Can't use getStringInput b/c it assumes blue colour. This is a limitation. (same situation below in removeArticle)
 
-        Logging.logUI("Are you sure? (Yes (y) or No (n): ", new String[]{Logging.BOLD, Logging.YELLOW}, true);
+        Logging.logUI("Are you sure? Type Yes (y) or No (n): ", new String[]{Logging.BOLD, Logging.YELLOW}, true);
         String userConfirm = scanner.nextLine();
 
         if (userConfirm.equals("yes") || userConfirm.equals("y")) {
@@ -260,8 +277,10 @@ public class Interactions {
             try {
 
                 Directories.delete("./ExternalFiles/Topics/" + topicName);
-                Logging.logUI("Topic deleted successfully!", new String[]{Logging.BOLD, Logging.GREEN});
+                Logging.logUI("Topic deleted successfully!", new String[] { Logging.BOLD, Logging.GREEN });
 
+                return true;
+                
             } catch (Exception e) {
 
                 Logging.logUI("An error occurred while deleting the topic folder.", new String[]{Logging.BOLD, Logging.RED});
@@ -270,9 +289,11 @@ public class Interactions {
 
         } else {
 
-            Logging.logUI("Topic deletion cancelled.", new String[]{Logging.BOLD, Logging.RED});
+            Logging.logUI("Topic deletion cancelled.", new String[] { Logging.BOLD, Logging.RED });
 
         }
+        
+        return false;
 
     }
 
@@ -417,7 +438,7 @@ public class Interactions {
 
         String articleName = getStringInput(scanner, "Enter the name of the article to remove");
 
-        Logging.logUI("Are you sure? (Yes (y) or No (n): ", new String[]{Logging.BOLD, Logging.YELLOW}, true);
+        Logging.logUI("Are you sure? Type Yes (y) or No (n): ", new String[]{Logging.BOLD, Logging.YELLOW}, true);
         String userConfirm = scanner.nextLine();
 
         if (userConfirm.equals("yes") || userConfirm.equals("y")) {
