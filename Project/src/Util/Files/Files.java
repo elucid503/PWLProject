@@ -109,6 +109,7 @@ public class Files {
      * Moves a file to a new location
      * @param oldPath - The old path
      * @param newPath - The new path
+     * @param absolutePath - If true, the path is absolute
      * @throws Exception - If the file cannot be moved
      */
 
