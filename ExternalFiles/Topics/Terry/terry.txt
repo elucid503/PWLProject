@@ -1,0 +1,99 @@
+Terry Davis was a controversial but brilliant programmer who struggled with schizophrenia. He singlehandedly built an entire operating system from scratch. Being the programming genius he was, could he have become the next Steve Jobs?
+Terry Davis
+Terry Davis in his younger days. Image credit: Templeos.org
+
+Perhaps! But, because of his mental illness, his life took a different turn, probably denying him the recognition and accolade he deserved. This story is about him, Terry Davis, the forgotten genius in the world of computers.
+
+Table of Contents
+Terry Davis, the boy wonder and the genius programmer
+Terry Davis as a little boy
+Terry Davis as a little boy with his family. Image credit: Templeos.org
+
+Terry. A. Davis was born on December 15, 1969, in West Allis, Wisconsin, to a father who was an industrial engineer. The seventh of eight children, Terry was unique and smart even as a child. While in elementary school, through a school “gifted program,” Terry had the opportunity to use an Apple II, which was one of the earliest, most revolutionary, and successfully produced microcomputer products at that time.  As a teenager in the 80s, he learned assembly language (symbolic machine code) on the Commodore 64, which was at that time the highest-selling computer model of all time. He continued programming throughout high school.
+Terry as a teenager
+Terry as a teenager with the Commodore 64. Image credit: Templeos.org
+
+In 1994, Terry graduated with a Master’s Degree in Electrical Engineering from Arizona State University.
+Terry on his graduation day
+Left: Terry on his graduation day. Image credit: Templeos.org
+
+While still in college, he was hired part-time at Ticketmaster and continued to work there as a programmer for VAX machines for several years after graduating. Though he liked the work, he was transferred to research projects that never materialized.
+Terry with his parents
+Terry with his parents in 1990. Image credit: Templeos.org
+
+Terry had a master’s degree, a brilliant mind, and wanted to build satellite control systems. He, therefore, resigned from Ticketmaster. In 1996, he sent his resume to a few defense contractors to fulfill as means to fulfill his dream. But soon, his delusions would slowly change the track of his life in a completely different direction.
+The onset of Terry’s struggle with mental illness
+Terry Davis
+Terry Davis, after he built his operating system. Image credit: Templeos.org
+
+Terry’s struggles began in 1996 when he found himself confined to a psychiatric ward due to delusions. He confided in Vice journalist Jesse Hicks, recounting how he started seeing shadowy figures in suits trailing his every move. Initially, he speculated they might be conducting background checks for the companies he’d applied to. Soon, however, his thoughts spiraled into a labyrinth of conspiracy theories involving himself, extraterrestrials, and the CIA. Overwhelmed by paranoia, Terry fled his hometown, embarking on a directionless journey southward, haunted by the looming specter of doomsday. Behind the wheel, he became convinced that his car radio was transmitting messages meant specifically for him.
+
+Terry Davis abandoned his Honda Accord in Marfa, Texas, his head swarming with conspiracies about Big Oil, one of the largest oil and gas companies in the world, and their conspiracy to suppress more efficient, water-based engines for cars. Convinced he was being tracked, he already removed the side panels from his car.
+Terry Davis in his van.
+Terry Davis in his van. Image credit: Templeos.org
+
+Next, he threw the car keys in the desert and started walking. Soon, a highway patrol officer put him in their car. Terry, paranoid, jumped out of the car, breaking his collarbone. He was taken to a hospital where he overheard doctors talking about “artifacts” on his X-ray scans. Convinced that these were extra-terrestrial, Terry once again ran from the hospital. But the police caught him soon enough and put him behind bars. In prison, he tried to short-circuit the cell door. He broke his glasses and attempted to stick the frame into the electrical outlet, but his frames were non-conductive, so it didn’t work.
+
+Subsequently, Terry found himself confined to a mental hospital for two weeks, living in constant fear and refusing sustenance, fearing it might be tampered with. Initially, he was diagnosed as being bipolar, but later assessments revealed schizophrenia.
+Terry’s life before Temple OS
+Terry with a computer monitor.
+Terry with a computer monitor. Probably in the 1980s. Image credit: Templeos.org
+
+In July of 1996, Terry returned to Arizona. Over the following year, he relied on credit cards, attempting to establish a business around a three-axis milling machine he designed with scrap parts at home. Being almost 20 years ahead of his time, he had in mind a machine in three dimensions that would work like a 3D printer. Despite his genius conviction that 3D printing would revolutionize the industry, its pace proved agonizingly sluggish. But while working on it with a Dremel tool, he accidentally nearly caused a fire in his apartment. This led him to abandon the venture.
+Terry Davis with his 3D printer prototype.
+Terry Davis with his 3D printer prototype. Image credit: Templeos.org
+
+Ultimately, he relocated to Las Vegas to live with his parents, aiming to economize while dedicating himself to writing a bookâ€”a sequel to George Orwell’s 1984. However, the project remained unfinished.
+
+From 1996 to 2003, David continued to have maniac episodes almost every six months. He was at first diagnosed as being bipolar but later officially declared a schizophrenic. In the beginning, he took one single medication and did not care much about his diagnosis. In 2014, in an interview with Vice, he admitted that in the initial years, he was rather crazy. But he had calmed down and is probably crazy in a different way. He felt now, there was a method to the madness.
+Temple OS, the operating system Terry Davis built from scratch because God asked him to
+Temple OS
+A screenshot of Temple OS. Image credit: Templeos.org
+
+Around 2003, Terry started working on Temple OS after God commanded him to do so. He considered it to be the third temple prophesized by the Bible. The Israelites built two temples dedicated to God in Jerusalem, both of which were destroyed. But there is a prophecy about a Third Temple, yet to be built, which is a major theme in Christian studies.
+
+Terry was convinced that God wanted him to build his temple, and God gave him very specific instructions to do so, such as a 640×480 resolution for all graphics, a single audio voice, and 16-bit colors.
+
+Terry Davis also created HolyC, his programming language, a modified version of C and C++. According to Terry, divinity often exhibits randomness. God had communicated with him through sets of words, randomly selected, and he derived answers from there.
+
+Terry spent 10 years creating Temple OS. He wrote the entire operating system from his parents’ house in Las Vegas. The software features multiple games, including a simulator game called AfterEgypt, in which you can climb Mt Horeb with Moses and see the burning bush. It also has music-creating software, a flight simulator, and other programs inspired by the Bible, all powered by HolyC. There are over 100,000 lines of code at 1.4 megabytes.
+
+Terry remarked, “I am God’s chosen programmer. He has endowed me with divine intellect, like the authors of the Bible.”
+
+In Temple OS, you can have God draw your picture with Shift f6, and you can speak in tongues which is a randomly selected set of words from God. For Terry, speaking in tongues was a way to communicate with God.
+
+In 2013, Terry finished building Temple OS, which is still considered as one of the most complex pieces of software ever written by a single developer.
+The challenges and controversies around Terry and his Temple OS
+Terry working on his OS
+Terry working on his OS. Image credit: Templeos.org
+
+Temple OS was a divinely inspired operating system, and Terry was commanded by God to build it, according to his instructions. But because of his mental illness, Terry often could not control what he said and ended up with extremely controversial remarks, comments, and monologues online.
+
+Davis regularly live-streamed on YouTube and posted video blogs on various topics related to computer science. He was lucid and extremely very knowledgeable in the subject. But he also documented his own life and often had random outbursts tainted with racial slurs, homophobia, as well as sexually explicit stresses.
+A Terry Davis livestream
+A Terry Davis livestream
+
+His controversial outbursts, along with an extremely articulate knowledge of computers, made him a controversial figure. He was both loved and hated, arousing curiosity as well as aversion. As a result, he was often banned from many tech sites, communities, and social media sites like Reddit.
+
+Small clips of his rants online have hit millions of views on TikTok and YouTube, and he is widely discussed in almost all tech communities on Reddit.
+
+Terry A Davis TempleOS random gems compilation 1
+
+Terry also spoke to God and revealed many of His likes and dislikes. God loves BMWs and the Beatles, and his favorite national anthem is the national anthem of Latvia. According to God, the 11th Commandment is “Though shalt not litter.” When asked why everything seemed bad, God answered, “Plant trees.”
+The tragedy of Terry’s final days
+Homeless Terry Davis
+Homeless Terry Davis, in front of the public library. Image credit: Templeos.org
+
+On August 11, 2018, at the age of 48, Terry Davis was walking alongside the train tracks in The Dalles, Oregon, and died after being hit by a train.
+
+In the last years, Terry was often homeless. From 1996, when his mental illness started, until 2017, Terry lived mostly with his parents in Las Vegas on social security. His condition deteriorated in 2017 as he continued to drink heavily and refused to take his medication. He was also arrested on charges of domestic violence against his father. Terry was finally asked to leave the house. He started living in his van and continued his online presence by accessing the Internet from the public library. Terry Davis had a large fan following in the tech world. His fans would often bring him food and offer him shelter, but he would always refuse.
+
+In August 2018, Terry posted a video that would be his last. He said he was “King Terry,” and it was rough to be homeless. He also joked about how it was good to be king.
+
+terry davis final video before death
+
+Soon after, The Dalles Chronicle posted an article about an anonymous homeless man hit by a train. A reporter from the newspaper was flooded with calls from Terry’s tech fans enquiring if it was him, which was later confirmed to be true. The authorities were not sure whether it was suicide or an accident. According to the police report, he was walking with his back towards the train and had turned just before it hit him.
+
+Terry Davis was a misunderstood genius who built something extraordinary. Vice reporter Jesse Hicks called him “God’s lonely programmer,” which perhaps does justice to his legacy.
+
+In Terry’s own words, the world would perhaps remember him as a “pathetic schizophrenic who built a crappy operating system,” but he was satisfied because God said he had built His Temple.

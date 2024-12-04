@@ -4,6 +4,7 @@ import Util.Strings;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;
+import java.nio.file.Paths;
 
 public class Files {
 
@@ -14,7 +15,7 @@ public class Files {
      */
 
     static public String readAsString(String path) throws Exception {
-
+        path = Paths.get(path).toString(); // Normalize the path
         // This uses a try-with-resources block to automatically close the reader when it's done.
         // Without this done, subsequent file system calls do not like us...
 
@@ -47,7 +48,7 @@ public class Files {
      */
 
     static public ArrayList<String> readAsStringList(String path, boolean individualWords) throws Exception {
-
+        path = Paths.get(path).toString(); // Normalize the path
         try (BufferedReader reader = new BufferedReader(new java.io.FileReader(path))) {
 
             ArrayList<String> fileContents = new ArrayList<>();
@@ -78,7 +79,7 @@ public class Files {
      */
 
     static public void write(String path, String contents) throws Exception {
-
+        path = Paths.get(path).toString(); // Normalize the path
         // write the contents to a file
 
         try {
@@ -105,33 +106,18 @@ public class Files {
      * @throws Exception - If the file cannot be moved
      */
 
-    static public void move(String oldPath, String newPath, boolean isAbsolute) throws Exception {
+    static public void moveFromAbsolutePathToRelative(String oldPath, String newPath) throws Exception {
 
-        // resolve the paths
+        // This method was especially finicky with the path resolution. Docs on the java.nio.Paths class were helpful here.
 
-        String resolvedOldPath;
+        oldPath = Paths.get(oldPath).normalize().toString(); // Normalize the path
+        newPath = Util.resolvePath(newPath); // Resolve the path
 
-        if (!isAbsolute) {
-
-            resolvedOldPath = Util.resolvePath(oldPath);
-
-        } else {
-
-            resolvedOldPath = oldPath; // Dont need to do anything
-
-        }
-
-        String resolvedNewPath = Util.resolvePath(newPath);
-
-        // move the file to a new location
+        // move the file
 
         try {
 
-            // To use this "move" method, we must wrap the string path representations in Paths.get (for some reason)
-
-            String fileName = resolvedOldPath.split("/")[resolvedOldPath.split("/").length - 1];
-
-            java.nio.file.Files.move(java.nio.file.Paths.get(resolvedOldPath), java.nio.file.Paths.get(resolvedNewPath + "/" + fileName));
+            java.nio.file.Files.move(java.nio.file.Paths.get(oldPath), java.nio.file.Paths.get(newPath + "/" + java.nio.file.Paths.get(oldPath).getFileName())); // Nice trick to avoid doing oldPath.split here
 
         } catch (Exception e) {
 
@@ -150,7 +136,7 @@ public class Files {
      */
 
     static public void delete(String path) throws Exception {
-
+        path = Paths.get(path).toString(); // Normalize the path
         // resolve the path
 
         String resolvedPath = Util.resolvePath(path);
