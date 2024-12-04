@@ -327,7 +327,7 @@ public class Interactions {
 
             if (!mostCommonWords.isEmpty()) {
 
-                Logging.logUI("Words repeated over 15 times: " + mostCommonWords, new String[]{Logging.BOLD, Logging.YELLOW});
+                Logging.logUI("Words repeated over 15 times: " + mostCommonWords, new String[]{Logging.ITALIC});
 
                 Logging.smartHorizontalLine();
 
