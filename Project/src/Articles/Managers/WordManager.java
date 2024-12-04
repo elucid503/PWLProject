@@ -1,5 +1,6 @@
-package Articles;
+package Articles.Managers;
 
+import Articles.Article;
 import Articles.Words.ArticleWord;
 import Util.Files.Files;
 import Util.Files.Util;
@@ -13,13 +14,13 @@ import java.util.HashMap;
  * */
 public class WordManager {
 
-    Article article;
+    public Article article;
 
     private final String stopWordPath = "./ExternalFiles/Assets/StopWords.txt";
 
     public ArrayList<String> stopWords;
 
-    int uniqueWordCount;
+    public int uniqueWordCount;
 
     public WordManager(Article article) throws Exception {
 
@@ -88,7 +89,7 @@ public class WordManager {
      */
     public ArrayList<ArticleWord> getMostUsedUniqueWords(int timesSeen) {
 
-        ArrayList<ArticleWord> sortedWords = Sorting.sortByObjectPropertyCount(this.article.uniqueWords, "timesSeen");
+        ArrayList<ArticleWord> sortedWords = Sorting.sortObjectByIntPropertyCount(this.article.uniqueWords, "timesSeen");
 
         ArrayList<ArticleWord> mostUniqueWords = new ArrayList<>();
 

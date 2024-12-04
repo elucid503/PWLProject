@@ -1,6 +1,7 @@
 package CLI;
 
 import Articles.Article;
+import Articles.ArticleWithScore;
 import Topics.Topic;
 import Util.Files.Directories;
 import Util.Files.Files;
@@ -8,21 +9,6 @@ import Util.Misc.Sorting;
 import Util.Scraping.ArticleScraper;
 
 import java.util.*; // As to import certain things (Scanner, ArrayList, etc.) from the java.util package since they are used a lot here
-
-/**
- * ArticleWithScore is a class that represents an article with a score. This is used in the sentiment analysis to store the article and its score for display and sorting.
- * */
-class ArticleWithScore {
-
-    Article article;
-    float score;
-
-    ArticleWithScore(Article article, float score) {
-        this.article = article;
-        this.score = score;
-    }
-
-}
 
 /**
  * Interactions handles all user interaction with the program.
@@ -292,14 +278,18 @@ public class Interactions {
 
         }
 
-        List<ArticleWithScore> articlesWithAscendingScore = Sorting.sortByObjectPropertyCount(articleWithScoreAdded, "score").reversed();
+        System.out.println(articleWithScoreAdded.stream().map(articleWithScore -> articleWithScore.score).toList());
+
+        List<ArticleWithScore> articlesWithDescendingScore = Sorting.sortObjectByFloatProperyCount(articleWithScoreAdded, "score"); // We need to use the float version here
+        
+        System.out.println(articlesWithDescendingScore.stream().map(articleWithScore -> articleWithScore.score).toList());
 
         // Print Top & Individual Analysis
 
         Article richestVocab = topic.articleManager.getArticleWithRichestVocab();
 
-        Article mostPositiveArticle = articlesWithAscendingScore.getLast().article;
-        Article leastPositiveArticle = articlesWithAscendingScore.getFirst().article;
+        Article mostPositiveArticle = articlesWithDescendingScore.getFirst().article;
+        Article leastPositiveArticle = articlesWithDescendingScore.getLast().article;
 
         Logging.lineBreak();
 
@@ -314,7 +304,7 @@ public class Interactions {
 
         Logging.lineBreak();
 
-        for (ArticleWithScore articleWithScore : articlesWithAscendingScore) {
+        for (ArticleWithScore articleWithScore : articlesWithDescendingScore) {
 
             List<String> mostCommonWords = articleWithScore.article.wordManager.getMostUsedUniqueWords(15).stream().map(word -> word.contents).toList(); // Can be a default list here, doesn't really matter
 

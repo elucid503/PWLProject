@@ -1,6 +1,7 @@
 package Topics;
 
 import Articles.Article;
+import Articles.Managers.WordManager;
 import CLI.Logging;
 import Util.Misc.Sorting;
 
@@ -28,6 +29,8 @@ public class ArticleManager {
 
     public Article getArticleWithRichestVocab() {
 
+        ArrayList<WordManager> wordManagers = new ArrayList<>();
+
         relatedTopic.articleList.forEach((currentArticle) -> {
 
             try {
@@ -35,6 +38,8 @@ public class ArticleManager {
                 currentArticle.read(true);
 
                 currentArticle.process();
+
+                wordManagers.add(currentArticle.wordManager);
 
             } catch (Exception e) {
 
@@ -44,9 +49,9 @@ public class ArticleManager {
 
         });
 
-        ArrayList<Article> sortedArticles = Sorting.sortByObjectPropertyCount(relatedTopic.articleList, "uniqueWordCount");
+        ArrayList<WordManager> sortedWordManagers = Sorting.sortObjectByIntPropertyCount(wordManagers, "uniqueWordCount");
 
-        return sortedArticles.getFirst();
+        return sortedWordManagers.getFirst().article;
 
     }
 

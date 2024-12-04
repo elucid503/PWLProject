@@ -1,5 +1,7 @@
 package Articles;
 
+import Articles.Managers.SentimentManager;
+import Articles.Managers.WordManager;
 import Articles.Words.ArticleWord;
 import Util.Files.Files;
 
@@ -21,13 +23,13 @@ public class Article {
     public ArrayList<ArticleWord> uniqueWords;
 
     public WordManager wordManager;
-    public SentimentRanker sentimentRanker;
+    public SentimentManager sentimentRanker;
 
     public Article(String filePath) throws Exception {
 
         this.filePath = filePath;
 
-        this.sentimentRanker = new SentimentRanker(this);
+        this.sentimentRanker = new SentimentManager(this);
         this.wordManager = new WordManager(this);
 
     }

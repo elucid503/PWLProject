@@ -1,5 +1,6 @@
-package Articles;
+package Articles.Managers;
 
+import Articles.Article;
 import Articles.Words.LexiconWord;
 import Util.Files.Files;
 import Util.Files.Util;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  * based on a lexicon of words with associated sentiment values.
  * */
 
-public class SentimentRanker {
+public class SentimentManager {
 
     Article relatedArticle;
 
@@ -20,7 +21,7 @@ public class SentimentRanker {
 
     float sentimentRank;
 
-    public SentimentRanker(Article article) {
+    public SentimentManager(Article article) {
 
         this.relatedArticle = article;
 
