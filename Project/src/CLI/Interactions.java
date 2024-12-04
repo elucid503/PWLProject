@@ -220,7 +220,7 @@ public class Interactions {
                 case "1": addArticle(scanner, topicName); break;
                 case "2": removeArticle(scanner, topicName); break;
                 case "3": runSentimentAnalysis(topic); break;
-                case "4": removeTopic(topicName); return;
+                case "4": removeTopic(scanner, topicName); return;
                 default: Logging.logUI("Invalid input", new String[]{Logging.BOLD, Logging.RED});
 
             }
@@ -248,16 +248,29 @@ public class Interactions {
 
     }
 
-    private static void removeTopic(String topicName) {
+    private static void removeTopic(Scanner scanner, String topicName) {
 
-        try {
+        // Can't use getStringInput b/c it assumes blue colour. This is a limitation. (same situation below in removeArticle)
 
-            Directories.delete("./ExternalFiles/Topics/" + topicName);
-            Logging.logUI("Topic deleted successfully!", new String[]{Logging.BOLD, Logging.GREEN});
+        Logging.logUI("Are you sure? (Yes (y) or No (n): ", new String[]{Logging.BOLD, Logging.YELLOW}, true);
+        String userConfirm = scanner.nextLine();
 
-        } catch (Exception e) {
+        if (userConfirm.equals("yes") || userConfirm.equals("y")) {
 
-            Logging.logUI("An error occurred while deleting the topic folder.", new String[]{Logging.BOLD, Logging.RED});
+            try {
+
+                Directories.delete("./ExternalFiles/Topics/" + topicName);
+                Logging.logUI("Topic deleted successfully!", new String[]{Logging.BOLD, Logging.GREEN});
+
+            } catch (Exception e) {
+
+                Logging.logUI("An error occurred while deleting the topic folder.", new String[]{Logging.BOLD, Logging.RED});
+
+            }
+
+        } else {
+
+            Logging.logUI("Topic deletion cancelled.", new String[]{Logging.BOLD, Logging.RED});
 
         }
 
@@ -279,7 +292,7 @@ public class Interactions {
         }
 
         List<ArticleWithScore> articlesWithDescendingScore = Sorting.sortObjectByFloatProperyCount(articleWithScoreAdded, "score"); // We need to use the float version here
-        
+
         // Print Top & Individual Analysis
 
         Article richestVocab = topic.articleManager.getArticleWithRichestVocab();
@@ -308,7 +321,7 @@ public class Interactions {
 
             String articleSpecificColour = articleWithScore.score > 10 ? Logging.GREEN : Logging.YELLOW;
             articleSpecificColour = articleWithScore.score < -10 ? Logging.RED : articleSpecificColour;
-            
+
             Logging.logUI("Article: " + articleWithScore.article.getName() + " | Score: " + String.format("%.2f", articleWithScore.score), new String[]{Logging.BOLD, articleSpecificColour}); // String.format can round the score to 2 decimal places using the %.2f format
 
             if (!mostCommonWords.isEmpty()) {
@@ -404,14 +417,25 @@ public class Interactions {
 
         String articleName = getStringInput(scanner, "Enter the name of the article to remove");
 
-        try {
+        Logging.logUI("Are you sure? (Yes (y) or No (n): ", new String[]{Logging.BOLD, Logging.YELLOW}, true);
+        String userConfirm = scanner.nextLine();
 
-            Files.delete("./ExternalFiles/Topics/" + topicName + "/" + articleName);
-            Logging.logUI("Article removed successfully!", new String[]{Logging.BOLD, Logging.GREEN});
+        if (userConfirm.equals("yes") || userConfirm.equals("y")) {
 
-        } catch (Exception e) {
+            try {
 
-            Logging.logUI("Failed to remove the article. It may not exist.", new String[]{Logging.BOLD, Logging.RED});
+                Files.delete("./ExternalFiles/Topics/" + topicName + "/" + articleName);
+                Logging.logUI("Article removed successfully!", new String[]{Logging.BOLD, Logging.GREEN});
+
+            } catch (Exception e) {
+
+                Logging.logUI("Failed to remove the article. It may not exist.", new String[]{Logging.BOLD, Logging.RED});
+
+            }
+        }
+
+        else {
+            Logging.logUI("Article deletion cancelled.", new String[]{Logging.BOLD, Logging.RED});
 
         }
 
