@@ -121,8 +121,8 @@ public class Files {
             
             // Remove " from start and end if they copied from Windows explorer 
 
-            if (oldPath.startsWith("\"") && oldPath.endsWith("\"")) {
-
+            if (oldPath.startsWith("\"") && oldPath.endsWith("\"") || oldPath.startsWith("'") && oldPath.endsWith("'")) {
+                
                 oldPath = oldPath.substring(1, oldPath.length() - 1); // Gets the content without the first and last character
 
             }
