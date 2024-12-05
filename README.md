@@ -8,7 +8,7 @@
 ---
 
 ## Project Statement
-This software application performs advanced text analysis with the goal of comparing articles about the same topic/news. The application can read multiple articles on a specific topic, analyze their content for word frequency, unique vocabulary, and sentiment.
+This software application performs advanced text analysis with the goal of comparing articles about the same topic/news. The application can read multiple articles on a specific topic, analyze their content for word frequency, unique vocabulary, and sentiment and they rank them from most positive to negative.
 
 ---
 
