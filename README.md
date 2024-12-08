@@ -173,6 +173,10 @@ This software application performs advanced text analysis with the goal of compa
         java Main
    ```
 
+## UML Diagram 
+
+![UML Image](https://github.com/elucid503/PWLProject/blob/f6eedea3240646b10937f463d9b964678b6ae151/Docs/Milestone3/UMLDiagram.png)
+
 ## Reflection
 
   For this semester, we were tasked with creating a Java application which takes a topic of
