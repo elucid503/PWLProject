@@ -169,8 +169,8 @@ This software application performs advanced text analysis with the goal of compa
 
 2. **Compile and Execute**:
    ```bash
-        javac Main.java
-        java Main
+     javac Main.java
+     java Main
    ```
 
 ## UML Diagram 
